@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "mhutchie.git-graph",
+    "geequlim.godot-tools",
+    "alfish.godot-files",
+    "gruntfuggly.todo-tree",
+    "gruntfuggly.triggertaskonsave",
+    "usernamehw.errorlens",
+    "dohe.godot-format",
+    "mariodebono.godot-4-vscode-theme",
+    "eamodio.gitlens"
+  ]
+}
