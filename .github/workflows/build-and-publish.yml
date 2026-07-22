@@ -86,8 +86,16 @@ jobs:
 
       - name: Setup Butler
         run: |
-          # Download Butler from official itch.io
-          wget -O butler.zip "https://dl.itch.ovh/butler/linux-amd64/head/butler.zip"
+          # Download Butler from GitHub releases (more reliable)
+          BUTLER_VERSION="15.29.0"
+          wget -O butler.zip "https://github.com/itchio/butler/releases/download/v${BUTLER_VERSION}/butler-linux-amd64.zip"
+          
+          # Fallback to latest if specific version fails
+          if [ $? -ne 0 ]; then
+            echo "Specific version failed, trying latest release..."
+            LATEST_URL=$(wget -qO- https://api.github.com/repos/itchio/butler/releases/latest | grep -oP '"browser_download_url": "\K[^"]*linux-amd64[^"]*')
+            wget -O butler.zip "$LATEST_URL"
+          fi
           
           # Extract Butler
           unzip butler.zip
