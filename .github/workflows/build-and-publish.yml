@@ -46,18 +46,26 @@ jobs:
           version: ${{ env.GODOT_VERSION }}
           use-dotnet: false
 
-      - name: Cache Godot export templates
-        id: cache-templates
-        uses: actions/cache@v4
-        with:
-          path: ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
-          key: godot-templates-${{ env.GODOT_VERSION }}
-
-      - name: Download Godot export templates
-        if: steps.cache-templates.outputs.cache-hit != 'true'
+      - name: Download and install export templates
         run: |
-          godot --headless --export-debug --verbose HTML5 /dev/null || true
-        continue-on-error: true
+          TEMPLATES_DIR="$HOME/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable"
+          mkdir -p "$TEMPLATES_DIR"
+          
+          # Download and extract the export templates
+          wget -O /tmp/export_templates.tpz "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz"
+          
+          # Extract templates to the correct directory
+          unzip -o /tmp/export_templates.tpz -d "$TEMPLATES_DIR"
+          
+          # Verify templates exist
+          echo "Checking for web templates:"
+          ls -la "$TEMPLATES_DIR"/web_* || echo "Warning: Web templates not found!"
+          
+          # Also install standard templates
+          mv "$TEMPLATES_DIR/templates/"* "$TEMPLATES_DIR/" 2>/dev/null || true
+          
+          echo "Template directory contents:"
+          ls -la "$TEMPLATES_DIR"
 
       - name: Create export directory
         run: mkdir -p ./export/html5
