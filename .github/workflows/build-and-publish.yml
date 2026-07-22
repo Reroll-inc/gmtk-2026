@@ -1,0 +1,123 @@
+name: Build and Publish to Itch.io
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., 1.0.0)"
+        required: true
+        default: "1.0.0"
+
+env:
+  ITCH_USERNAME: ${{ secrets.ITCH_USERNAME }}
+  ITCH_GAME_ID: ${{ secrets.ITCH_GAME_ID }}
+  GODOT_VERSION: "4.6.3"
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Extract project name from project.godot
+        id: project-name
+        run: |
+          if [ -f "project.godot" ]; then
+            PROJECT_NAME=$(grep -oP 'config/name="\K[^"]+' project.godot)
+            echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_OUTPUT
+            echo "Project name: $PROJECT_NAME"
+          else
+            echo "Error: project.godot file not found"
+            exit 1
+          fi
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+
+      - name: Cache Godot export templates
+        id: cache-templates
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          key: godot-templates-${{ env.GODOT_VERSION }}
+
+      - name: Download Godot export templates
+        if: steps.cache-templates.outputs.cache-hit != 'true'
+        run: |
+          godot --headless --export-debug --verbose HTML5 /dev/null || true
+        continue-on-error: true
+
+      - name: Create export directory
+        run: mkdir -p ./export/html5
+
+      - name: Build HTML5
+        run: |
+          godot --headless --export-release "HTML5" ./export/html5/index.html
+
+      - name: Create ZIP archive
+        run: |
+          cd ./export/html5
+          zip -r ../../${{ steps.project-name.outputs.PROJECT_NAME }}.zip ./*
+          cd ../..
+          echo "Created archive: ${{ steps.project-name.outputs.PROJECT_NAME }}.zip"
+
+      - name: Setup Butler
+        run: |
+          # Download Butler
+          wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          
+          # Extract Butler
+          unzip butler.zip
+          
+          # Make Butler executable
+          chmod +x butler
+          
+          # Move Butler to a directory in PATH
+          sudo mv butler /usr/local/bin/
+          
+          # Verify installation
+          butler --version
+
+      - name: Push to itch.io (Stable Channel)
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "Pushing ${{ steps.project-name.outputs.PROJECT_NAME }} version $VERSION to stable channel..."
+          butler push ./${{ steps.project-name.outputs.PROJECT_NAME }}.zip ${{ secrets.ITCH_USERNAME }}/${{ secrets.ITCH_GAME_ID }}:html5 --userversion $VERSION
+
+      - name: Push to itch.io (Beta Channel)
+        if: github.ref == 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/')
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
+          echo "Pushing ${{ steps.project-name.outputs.PROJECT_NAME }} beta version to beta channel..."
+          butler push ./${{ steps.project-name.outputs.PROJECT_NAME }}.zip ${{ secrets.ITCH_USERNAME }}/${{ secrets.ITCH_GAME_ID }}:html5-beta --userversion "beta-$SHORT_SHA"
+
+      - name: Push to itch.io (Manual Trigger)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          echo "Pushing ${{ steps.project-name.outputs.PROJECT_NAME }} version ${{ github.event.inputs.version }} from manual trigger..."
+          butler push ./${{ steps.project-name.outputs.PROJECT_NAME }}.zip ${{ secrets.ITCH_USERNAME }}/${{ secrets.ITCH_GAME_ID }}:html5-manual --userversion "${{ github.event.inputs.version }}"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.project-name.outputs.PROJECT_NAME }}-${{ github.sha }}
+          path: ./${{ steps.project-name.outputs.PROJECT_NAME }}.zip
