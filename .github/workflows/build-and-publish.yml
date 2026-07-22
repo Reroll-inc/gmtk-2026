@@ -57,12 +57,15 @@ jobs:
           # Extract templates to the correct directory
           unzip -o /tmp/export_templates.tpz -d "$TEMPLATES_DIR"
           
+          # Move templates if they're in a subdirectory
+          if [ -d "$TEMPLATES_DIR/templates" ]; then
+            mv "$TEMPLATES_DIR/templates/"* "$TEMPLATES_DIR/"
+            rmdir "$TEMPLATES_DIR/templates"
+          fi
+          
           # Verify templates exist
           echo "Checking for web templates:"
           ls -la "$TEMPLATES_DIR"/web_* || echo "Warning: Web templates not found!"
-          
-          # Also install standard templates
-          mv "$TEMPLATES_DIR/templates/"* "$TEMPLATES_DIR/" 2>/dev/null || true
           
           echo "Template directory contents:"
           ls -la "$TEMPLATES_DIR"
@@ -83,8 +86,8 @@ jobs:
 
       - name: Setup Butler
         run: |
-          # Download Butler
-          wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          # Download Butler from official itch.io
+          wget -O butler.zip "https://dl.itch.ovh/butler/linux-amd64/head/butler.zip"
           
           # Extract Butler
           unzip butler.zip
