@@ -86,7 +86,7 @@ jobs:
 
       - name: Setup Butler
         run: |
-          # Download Butler from GitHub releases (more reliable)
+          # Download Butler from GitHub releases
           BUTLER_VERSION="15.29.0"
           wget -O butler.zip "https://github.com/itchio/butler/releases/download/v${BUTLER_VERSION}/butler-linux-amd64.zip"
           
@@ -100,11 +100,24 @@ jobs:
           # Extract Butler
           unzip butler.zip
           
-          # Make Butler executable
-          chmod +x butler
+          # Find and move Butler to a directory in PATH
+          if [ -f "linux-amd64/butler" ]; then
+            chmod +x linux-amd64/butler
+            sudo mv linux-amd64/butler /usr/local/bin/
+          elif [ -f "butler" ]; then
+            chmod +x butler
+            sudo mv butler /usr/local/bin/
+          else
+            echo "Butler binary not found!"
+            echo "Contents of extraction:"
+            find . -name "butler" -type f
+            exit 1
+          fi
           
-          # Move Butler to a directory in PATH
-          sudo mv butler /usr/local/bin/
+          # Move libraries if they exist
+          if [ -d "linux-amd64" ]; then
+            sudo mv linux-amd64/*.so /usr/local/lib/ 2>/dev/null || true
+          fi
           
           # Verify installation
           butler --version
