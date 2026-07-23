@@ -26,7 +26,7 @@ gdscript/warnings/unsafe_method_access=2
 [display]
 
 window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_height=272
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
