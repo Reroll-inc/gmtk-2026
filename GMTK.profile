@@ -1,0 +1,15 @@
+{
+	"disabled_classes": [
+		"NavigationAgent3D",
+		"Node3D",
+		"Shape3D",
+		"TileMap",
+		"World3D"
+	],
+	"disabled_editors": [],
+	"disabled_features": [
+		"3d"
+	],
+	"disabled_properties": [],
+	"type": "feature_profile"
+}
