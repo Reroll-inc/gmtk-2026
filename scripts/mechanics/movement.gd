@@ -1,5 +1,5 @@
-class_name BaseMovement
 extends Mechanic
+class_name BaseMovement
 
 @export var jump_height: float = -450.0
 @export var gravity: float = 20.5
@@ -12,9 +12,12 @@ extends Mechanic
 
 @export var air_acceleration: float = 10.0
 
+
 func can_interrupt() -> bool:
 	return true
 
+
+# base movement is always active
 func on_physics_process(delta: float) -> bool:
 	var hor: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var acc: float = acceleration if player.is_on_floor() else air_acceleration
@@ -32,4 +35,5 @@ func on_physics_process(delta: float) -> bool:
 			player.velocity.y += fast_fall_gravity * delta
 
 	player.velocity.y += gravity
-	return true # base movement is always active
+
+	return true

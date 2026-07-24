@@ -1,5 +1,5 @@
-class_name Mechanic
 extends Node
+class_name Mechanic
 
 var player: Player
 
