@@ -1,9 +1,8 @@
 extends Mechanic
 class_name BaseMovement
 
-func can_interrupt() -> bool:
+func is_interruptible() -> bool:
 	return true
-
 
 # base movement is always active
 func on_physics_process(delta: float) -> bool:

@@ -28,5 +28,9 @@ func on_physics_process(_delta: float) -> bool:
 # we can technically always use the base movement
 # and that state never needs to end to switch to another mechanic
 # so we can say there are states that can be interrupted and states that cannot
-func can_interrupt() -> bool:
+func is_interruptible() -> bool:
 	return false
+
+# wanna play rock paper scissors with the mechanics? 
+func is_interruptible_by(_m: Mechanic) -> bool:
+	return true

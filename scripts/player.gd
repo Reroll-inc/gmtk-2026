@@ -64,11 +64,11 @@ func _physics_process(delta: float) -> void:
 
 	# no mechanic is active, try to switch to one that can be activated
 	# or... maybe the current mechanic allows a break?
-	if _active == null or _active.can_interrupt():
+	if _active == null or _active.is_interruptible():
 		for m: Mechanic in _mechanics:
 			if m == _active:
 				continue
-			if m.can_activate():
+			if m.can_activate() and (_active == null or _active.is_interruptible_by(m)):
 				_switch_mechanic(m)
 				break
 
