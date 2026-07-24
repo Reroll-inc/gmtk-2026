@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c88403jwedf2o" path="res://scripts/integrations.gd" id="2_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://d27erohljh1tt" path="res://game/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://dsg38b2sivjds" path="res://game/enemy.tscn" id="4_dxrkv"]
+[ext_resource type="Script" uid="uid://birv3v4hd2ab4" path="res://game/debug_controls.gd" id="6_dakft"]
 
 [node name="Game" type="Node2D" unique_id=797240526]
 script = ExtResource("1_4fuuu")
@@ -46,5 +47,19 @@ position = Vector2(28, 246)
 tile_set = ExtResource("1_vasa2")
 collision_enabled = false
 
+[node name="DebugControls" type="CanvasLayer" parent="." unique_id=1195832901]
+script = ExtResource("6_dakft")
+
+[node name="Button" type="Button" parent="DebugControls" unique_id=85073596]
+offset_right = 114.0
+offset_bottom = 31.0
+text = "remove climb"
+
+[node name="MechanicsBar" type="HBoxContainer" parent="DebugControls" unique_id=989835015]
+offset_top = 212.0
+offset_right = 480.0
+offset_bottom = 272.0
+
 [connection signal="on_complete" from="TileMapLayers/Node2D/Integrations" to="." method="_handle_on_complete"]
 [connection signal="on_die" from="TileMapLayers/Node2D/Integrations" to="." method="_handle_on_die"]
+[connection signal="pressed" from="DebugControls/Button" to="DebugControls" method="_on_button_pressed"]

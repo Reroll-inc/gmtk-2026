@@ -21,6 +21,9 @@ var last_facing: Vector2 = Vector2.RIGHT
 
 
 func _ready() -> void:
+	SignalBus.remove_mechanic.connect(_remove_mechanic)
+	Global.set_player(self)
+
 	for child: Node in mechanics.get_children():
 		if child is Mechanic:
 			var m: Mechanic = child
@@ -47,6 +50,16 @@ func _switch_mechanic(next: Mechanic) -> void:
 	if _active != null:
 		_active.on_enter()
 
+func _remove_mechanic(mechanic_name: String) -> void:
+	var m: Mechanic = mechanics.get_node_or_null(mechanic_name)
+	if m == null:
+		print("Mechanic not found: " + mechanic_name)
+		return
+	print("Removing mechanic: " + mechanic_name)
+	if m == _active:
+		_switch_mechanic(_fallback())
+	_mechanics.erase(m)
+	m.queue_free()
 
 func _physics_process(delta: float) -> void:
 	var dir: Vector2 = read_input_direction()
