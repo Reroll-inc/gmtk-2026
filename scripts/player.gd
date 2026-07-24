@@ -48,13 +48,6 @@ func _switch_mechanic(next: Mechanic) -> void:
 		_active.on_enter()
 
 
-func read_input_direction() -> Vector2:
-	var hor: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	var ver: float = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
-	return Vector2(hor, ver).normalized()
-
-
 func _physics_process(delta: float) -> void:
 	var dir: Vector2 = read_input_direction()
 	last_facing = dir if dir != Vector2.ZERO else last_facing
@@ -79,3 +72,18 @@ func _physics_process(delta: float) -> void:
 			_switch_mechanic(_fallback())
 
 	move_and_slide()
+
+
+func read_input_direction() -> Vector2:
+	var hor: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var ver: float = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+
+	return Vector2(hor, ver).normalized()
+
+
+func is_falling() -> bool:
+	return velocity.y > 0
+
+
+func bounce_up_on_hit_enemy() -> void:
+	velocity.y = -300

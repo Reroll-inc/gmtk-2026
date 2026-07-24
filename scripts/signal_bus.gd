@@ -1,3 +1,7 @@
 extends Node
 
-signal enemy_hit(enemy: Enemy)
+@warning_ignore("unused_signal")
+signal player_receive_dmg()
+
+@warning_ignore("unused_signal")
+signal enemy_killed()

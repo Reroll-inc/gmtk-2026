@@ -15,6 +15,7 @@
 	"disabled_editors": [],
 	"disabled_features": [
 		"3d",
+		"script",
 		"node_dock"
 	],
 	"disabled_properties": [],
