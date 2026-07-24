@@ -44,6 +44,7 @@ script = ExtResource("3_p0vpi")
 
 [node name="Dash" type="Node" parent="Mechanics" unique_id=462262863]
 script = ExtResource("4_d631c")
+dash_speed = 400.0
 
 [node name="Timer" type="Timer" parent="Mechanics/Dash" unique_id=1581368041]
 

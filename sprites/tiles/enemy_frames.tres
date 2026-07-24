@@ -2,6 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://b6kr8edkpn3or" path="res://sprites/tiles/tileset_16x16.png" id="1_8w1ke"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w1ke"]
+atlas = ExtResource("1_8w1ke")
+region = Rect2(64, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o4hy"]
+atlas = ExtResource("1_8w1ke")
+region = Rect2(80, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx62n"]
+atlas = ExtResource("1_8w1ke")
+region = Rect2(96, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjd0u"]
+atlas = ExtResource("1_8w1ke")
+region = Rect2(112, 240, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgvkd"]
 atlas = ExtResource("1_8w1ke")
 region = Rect2(112, 64, 16, 16)
@@ -22,6 +38,23 @@ region = Rect2(96, 80, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8w1ke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o4hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sx62n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjd0u")
+}],
+"loop": true,
+"name": &"ghost",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jgvkd")
 }, {
 "duration": 1.0,
@@ -34,6 +67,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_hpa3i")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"slime",
 "speed": 4.0
 }]

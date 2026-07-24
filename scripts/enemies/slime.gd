@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Enemy
+class_name Slime
 
 @export var speed: float = 50.0
 
@@ -9,10 +9,6 @@ class_name Enemy
 
 var direction: int = 1
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
-func _ready() -> void:
-	_sprite.play("walk")
 
 
 func _physics_process(delta: float) -> void:
