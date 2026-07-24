@@ -3,6 +3,8 @@ class_name Foreground
 
 signal on_die()
 
+signal on_complete()
+
 @export var player: Player
 
 
@@ -17,6 +19,10 @@ func _check_tile_map_events() -> void:
 		print("Player stepped on a spike!")
 		on_die.emit()
 
+	if tile_data.get_custom_data("is_exit") == true:
+		print("Player reached exit!")
+		on_complete.emit()
 
-func _physics_process(_delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	_check_tile_map_events()

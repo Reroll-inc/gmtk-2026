@@ -11,3 +11,7 @@ func _ready() -> void:
 
 func _handle_on_die() -> void:
 	_player.position = _start.position
+
+
+func _handle_on_complete() -> void:
+	_player.position = _start.position
