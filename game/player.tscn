@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0xop8ps6fxhj" path="res://assets/icon.svg" id="2_du4nq"]
 [ext_resource type="Script" uid="uid://cv1iuyj768s11" path="res://scripts/mechanics/movement.gd" id="3_p0vpi"]
 [ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://scripts/mechanics/dash.gd" id="4_d631c"]
+[ext_resource type="Script" uid="uid://cn02dbf02q4gf" path="res://scripts/mechanics/double_jump.gd" id="5_d631c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vpi"]
 size = Vector2(16, 16)
@@ -27,6 +28,9 @@ script = ExtResource("3_p0vpi")
 script = ExtResource("4_d631c")
 
 [node name="Timer" type="Timer" parent="Mechanics/Dash" unique_id=1581368041]
+
+[node name="DoubleJump" type="Node" parent="Mechanics" unique_id=550009658]
+script = ExtResource("5_d631c")
 
 [node name="Climb" type="Node" parent="Mechanics" unique_id=980693463]
 

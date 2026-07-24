@@ -1,6 +1,17 @@
 extends CharacterBody2D
 class_name Player
 
+@export var jump_height: float = -450.0
+@export var gravity: float = 20.5
+@export var jump_hold: float = 0.5
+@export var fast_fall_gravity: float = 600.0
+
+@export var max_speed: float = 400.0
+@export var acceleration: float = 52.5
+@export var friction: float = 12.5
+
+@export var air_acceleration: float = 10.0
+
 @onready var mechanics: Node = $Mechanics
 
 var _mechanics: Array[Mechanic] = []
