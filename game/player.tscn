@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dvaxcquvh2phj" path="res://scripts/player.gd" id="1_w5y0b"]
 [ext_resource type="Texture2D" uid="uid://0xop8ps6fxhj" path="res://assets/icon.svg" id="2_du4nq"]
+[ext_resource type="Script" uid="uid://cv1iuyj768s11" path="res://scripts/mechanics/movement.gd" id="3_p0vpi"]
+[ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://scripts/mechanics/dash.gd" id="4_d631c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0vpi"]
 
@@ -14,3 +16,17 @@ texture = ExtResource("2_du4nq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1821165433]
 shape = SubResource("CapsuleShape2D_p0vpi")
+
+[node name="Mechanics" type="Node" parent="." unique_id=1410392055]
+
+[node name="Base" type="Node" parent="Mechanics" unique_id=1872219932]
+script = ExtResource("3_p0vpi")
+
+[node name="Dash" type="Node" parent="Mechanics" unique_id=462262863]
+script = ExtResource("4_d631c")
+
+[node name="Timer" type="Timer" parent="Mechanics/Dash" unique_id=1581368041]
+
+[node name="Climb" type="Node" parent="Mechanics" unique_id=980693463]
+
+[connection signal="timeout" from="Mechanics/Dash/Timer" to="Mechanics/Dash" method="_on_timer_timeout"]
