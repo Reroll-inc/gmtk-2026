@@ -13,6 +13,14 @@ size = Vector2(16, 16)
 [node name="Player" type="CharacterBody2D" unique_id=1622942523]
 script = ExtResource("1_w5y0b")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2145180200]
+limit_left = 0
+limit_top = 0
+limit_right = 1440
+limit_bottom = 272
+position_smoothing_enabled = true
+editor_draw_limits = true
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1137297036]
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_du4nq")
