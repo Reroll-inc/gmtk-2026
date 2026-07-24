@@ -6,6 +6,8 @@ extends CharacterBody2D
 var _mechanics: Array[Mechanic] = []
 var _active: Mechanic = null
 
+var _last_facing: Vector2 = Vector2.RIGHT
+
 func _ready() -> void:
 	for child in mechanics.get_children():
 		if child is Mechanic:
@@ -31,26 +33,26 @@ func _switch_mechanic(next: Mechanic) -> void:
 	if _active != null:
 		_active.on_enter()
 
-# tendria que poder armar una especie de state machine, levantando los nodos de mechanics que tenga disponibles
+func _read_input_direction() -> Vector2:
+	var hor: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var ver: float = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+
+	return Vector2(hor, ver).normalized()
+
 func _physics_process(delta: float) -> void:
-	#como paso de base a climb?
-	#de climb a dash?
-	#de dash a base?
+	var dir = _read_input_direction()
+	_last_facing = dir if dir != Vector2.ZERO else _last_facing
+
 	if _active == null:
 		_switch_mechanic(_fallback())
-	
-	if Input.is_action_just_pressed("dash"):
-		print("dash pressed")
 
 	# no mechanic is active, try to switch to one that can be activated
 	# or... maybe the current mechanic allows a break?
 	if _active == null or _active.can_interrupt():
 		for m in _mechanics:
 			if m == _active:
-				print("active mechanic is null, but we are trying to switch to it")
 				continue
 			if m.can_activate():
-				print("switching to mechanic: ", m)
 				_switch_mechanic(m)
 				break
 	

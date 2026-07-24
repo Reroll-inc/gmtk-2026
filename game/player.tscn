@@ -5,17 +5,18 @@
 [ext_resource type="Script" uid="uid://cv1iuyj768s11" path="res://scripts/mechanics/movement.gd" id="3_p0vpi"]
 [ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://scripts/mechanics/dash.gd" id="4_d631c"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0vpi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vpi"]
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=1622942523]
 script = ExtResource("1_w5y0b")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1137297036]
-scale = Vector2(0.15625, 0.23437499)
+scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_du4nq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1821165433]
-shape = SubResource("CapsuleShape2D_p0vpi")
+shape = SubResource("RectangleShape2D_p0vpi")
 
 [node name="Mechanics" type="Node" parent="." unique_id=1410392055]
 

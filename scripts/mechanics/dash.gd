@@ -19,14 +19,10 @@ func can_activate() -> bool:
 		return false
 	return Input.is_action_just_pressed("dash")
 
-func _read_input_direction() -> Vector2:
-	var hor: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	var ver: float = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
-	return Vector2(hor, ver).normalized()
-
 func on_enter() -> void:
-	_dir = _read_input_direction()
+	var dir = player._read_input_direction()
+	_dir = dir if dir != Vector2.ZERO else player._last_facing
+
 	_time_left = dash_duration
 	_cooling_down = true
 	timer.start()
