@@ -1,5 +1,4 @@
 extends TileMapLayer
-class_name Foreground
 
 signal on_die()
 

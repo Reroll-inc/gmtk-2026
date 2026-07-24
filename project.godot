@@ -15,6 +15,10 @@ run/main_scene="uid://c12tjakih4u0m"
 config/features=PackedStringArray("4.6")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+SignalBus="*uid://b8d2v4tciy2kr"
+
 [debug]
 
 gdscript/warnings/unused_parameter=2
