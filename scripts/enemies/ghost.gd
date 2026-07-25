@@ -6,6 +6,7 @@ class_name Ghost
 @export var distance: float = -120.0
 
 @onready var _animator: AnimationPlayer = $AnimationPlayer
+@onready var _hitbox_collision: CollisionShape2D = $Sprite/Hitbox/CollisionShape2D
 
 
 func _ready() -> void:
@@ -17,13 +18,7 @@ func _ready() -> void:
 # This code should always expect the enemy to collide against the player.
 # Nothing else is going to hit it as part of the hitbox, so it is safe.
 func _on_hitbox_body_entered(player: Player) -> void:
-	if player.is_falling():
-		player.bounce_up_on_hit_enemy()
-		SignalBus.enemy_killed.emit()
-
-		queue_free()
-	else:
-		SignalBus.player_receive_dmg.emit()
+	player.on_enemy_hit(self)
 
 
 # Hardcoded property & keyframe
@@ -44,3 +39,18 @@ func _preset_animation() -> void:
 
 	_animator.remove_animation_library("ghost")
 	_animator.add_animation_library("ghost", lib)
+
+
+func kill() -> void:
+	hide()
+
+	_hitbox_collision.disabled = true
+
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func restore() -> void:
+	show()
+
+	_hitbox_collision.disabled = false
+	process_mode = Node.PROCESS_MODE_ALWAYS

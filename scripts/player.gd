@@ -11,6 +11,7 @@ class_name Player
 @export var friction: float = 12.5
 
 @export var air_acceleration: float = 10.0
+@export var bounce_up_on_kill: float = -300.0
 
 @onready var mechanics: Node = $Mechanics
 
@@ -18,11 +19,11 @@ var _mechanics: Array[Mechanic] = []
 var _active: Mechanic = null
 
 var last_facing: Vector2 = Vector2.RIGHT
+var _kill_enabled: bool = true
 
 
 func _ready() -> void:
 	SignalBus.remove_mechanic.connect(remove_mechanic)
-	Global.set_player(self)
 
 	for child: Node in mechanics.get_children():
 		if child is Mechanic:
@@ -81,6 +82,10 @@ func _physics_process(delta: float) -> void:
 
 
 func remove_mechanic(type: Mechanic.Type) -> void:
+	if type == Mechanic.Type.KILL:
+		_kill_enabled = false
+		return
+
 	var mechanic_name: String = Mechanic.NODE_NAME[type]
 	var m: Mechanic = mechanics.get_node_or_null(mechanic_name)
 
@@ -108,5 +113,12 @@ func is_falling() -> bool:
 	return velocity.y > 0
 
 
-func bounce_up_on_hit_enemy() -> void:
-	velocity.y = -300
+func on_enemy_hit(enemy: Node2D) -> void:
+	if _kill_enabled and is_falling():
+		velocity.y = bounce_up_on_kill
+
+		SignalBus.enemy_killed.emit()
+
+		enemy.call_deferred("kill")
+	else:
+		SignalBus.player_receive_dmg.emit()

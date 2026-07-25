@@ -5,6 +5,7 @@ class_name GameManager
 
 @onready var _start: Node2D = $Start
 @onready var _player: Player = $TileMapLayers/Node2D/Player
+@onready var _enemies: Array[Node] = $TileMapLayers/Node2D/Integrations.get_children()
 
 
 func _init() -> void:
@@ -13,32 +14,35 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	_reset_player()
+	_reset()
 
 	for type in disposed_skills:
 		_player.remove_mechanic(type)
 
 
 func _handle_on_die() -> void:
-	_reset_player()
+	_reset()
 
 
 func _handle_on_complete() -> void:
-	_reset_player()
+	_reset()
 
 
 # This could be managed by the player and just get hit
 # and animate the dmged state?
 func _handle_player_receive_dmg() -> void:
-	_reset_player()
+	_reset()
 
 
 func _handle_skill_removal(type: Mechanic.Type) -> void:
 	disposed_skills.push_back(type)
 
 
-func _reset_player() -> void:
+func _reset() -> void:
 	_player.position = _start.position
+
+	for enemy in _enemies:
+		enemy.call_deferred("restore")
 
 
 # TODO

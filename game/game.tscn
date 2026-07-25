@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d27erohljh1tt" path="res://game/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://dsg38b2sivjds" path="res://game/enemies/slime.tscn" id="4_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://diipvyyhr11d0" path="res://game/enemies/ghost.tscn" id="5_dakft"]
-[ext_resource type="Script" uid="uid://birv3v4hd2ab4" path="res://game/debug_controls.gd" id="6_dakft"]
 
 [node name="Game" type="Node2D" unique_id=797240526]
 script = ExtResource("1_4fuuu")
@@ -91,6 +90,12 @@ speed = 0.7
 vertical = false
 distance = 128.0
 
+[node name="Ghost12" parent="TileMapLayers/Node2D/Integrations" unique_id=830278515 instance=ExtResource("5_dakft")]
+position = Vector2(585, 263)
+speed = 0.7
+vertical = false
+distance = 128.0
+
 [node name="Ghost10" parent="TileMapLayers/Node2D/Integrations" unique_id=2025982248 instance=ExtResource("5_dakft")]
 position = Vector2(1112, 217)
 vertical = false
@@ -98,9 +103,8 @@ distance = 160.0
 
 [node name="Ghost11" parent="TileMapLayers/Node2D/Integrations" unique_id=484330483 instance=ExtResource("5_dakft")]
 position = Vector2(984, 152)
-speed = 2.0
-vertical = false
-distance = 144.0
+speed = 1.25
+distance = 64.0
 
 [node name="Player" parent="TileMapLayers/Node2D" unique_id=1622942523 instance=ExtResource("2_vasa2")]
 position = Vector2(-51, 243)
@@ -113,24 +117,9 @@ tile_map_data = PackedByteArray("AAAKABAAAAADAAMAAAALABAAAAADAAMAAAAMABAAAAADAAM
 tile_set = ExtResource("1_vasa2")
 collision_enabled = false
 
-[node name="DebugControls" type="CanvasLayer" parent="." unique_id=1195832901]
-visible = false
-script = ExtResource("6_dakft")
-
-[node name="Button" type="Button" parent="DebugControls" unique_id=85073596]
-offset_right = 114.0
-offset_bottom = 31.0
-text = "remove climb"
-
-[node name="MechanicsBar" type="HBoxContainer" parent="DebugControls" unique_id=989835015]
-offset_top = 212.0
-offset_right = 480.0
-offset_bottom = 272.0
-
 [node name="Start" type="Marker2D" parent="." unique_id=809326603]
 position = Vector2(24, 248)
 gizmo_extents = 8.0
 
 [connection signal="on_complete" from="TileMapLayers/Node2D/Integrations" to="." method="_handle_on_complete"]
 [connection signal="on_die" from="TileMapLayers/Node2D/Integrations" to="." method="_handle_on_die"]
-[connection signal="pressed" from="DebugControls/Button" to="DebugControls" method="_on_button_pressed"]
