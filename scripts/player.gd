@@ -133,11 +133,11 @@ func is_falling() -> bool:
 	return velocity.y > 0
 
 
-func on_enemy_hit(enemy: Node2D) -> void:
+func on_enemy_hit(enemy: Node2D, type: Enemy.Type) -> void:
 	if _kill_enabled and is_falling():
 		velocity.y = bounce_up_on_kill
 
-		SignalBus.enemy_killed.emit()
+		SignalBus.enemy_killed.emit(type)
 
 		enemy.call_deferred("kill")
 	else:

@@ -5,5 +5,9 @@
 
 [node name="Main" type="Node" unique_id=2074224198]
 script = ExtResource("1_0xm2m")
+points = Dictionary[int, int]({
+0: 30,
+1: 200
+})
 
 [node name="Game" parent="." unique_id=797240526 instance=ExtResource("1_ig7tw")]

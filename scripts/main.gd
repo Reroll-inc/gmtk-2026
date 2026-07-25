@@ -2,8 +2,12 @@ extends Node
 
 enum State {}
 
+@export var points: Dictionary[Enemy.Type, int] = { Enemy.Type.GHOST: 300, Enemy.Type.SLIME: 200 }
+
 @onready var game: GameManager = $Game
 
+var _score: int = 0
+var _run_score: int = 0
 var _skills: Array[Mechanic.Type] = [
 	Mechanic.Type.CLIMB,
 	Mechanic.Type.DASH,
@@ -16,6 +20,8 @@ var _skills: Array[Mechanic.Type] = [
 func _init() -> void:
 	SignalBus.level_completed.connect(_handle_on_complete)
 	SignalBus.game_failed.connect(_handle_on_fail)
+	SignalBus.enemy_killed.connect(_handle_enemy_kill)
+	SignalBus.player_receive_dmg.connect(_handle_player_dmg)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,12 +29,28 @@ func _ready() -> void:
 	game.show()
 
 
+func _handle_enemy_kill(type: Enemy.Type) -> void:
+	_run_score += points[type]
+	_score += points[type]
+
+	SignalBus.score_update.emit(_score)
+
+
+func _handle_player_dmg() -> void:
+	_score -= _run_score
+	_run_score = 0
+
+	SignalBus.score_update.emit(_score)
+
+
 func _handle_on_fail() -> void:
+	_score = 0
+	_run_score = 0
 	_skills = [
 		Mechanic.Type.CLIMB,
 		Mechanic.Type.DASH,
 		Mechanic.Type.DOUBLE_JUMP,
-		# Mechanic.Type.FLY,
+		Mechanic.Type.FLY,
 		Mechanic.Type.KILL,
 	]
 
@@ -36,6 +58,8 @@ func _handle_on_fail() -> void:
 
 
 func _handle_on_complete() -> void:
+	_run_score = 0
+
 	var type: Mechanic.Type = _skills.pick_random()
 
 	_skills.remove_at(_skills.find(type))

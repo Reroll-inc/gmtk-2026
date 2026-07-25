@@ -18,7 +18,7 @@ func _ready() -> void:
 # This code should always expect the enemy to collide against the player.
 # Nothing else is going to hit it as part of the hitbox, so it is safe.
 func _on_hitbox_body_entered(player: Player) -> void:
-	player.on_enemy_hit(self)
+	player.on_enemy_hit(self, Enemy.Type.GHOST)
 
 
 # Hardcoded property & keyframe

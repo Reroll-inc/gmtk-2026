@@ -9,8 +9,6 @@ size = Vector2(12, 12)
 
 [node name="Ghost" type="Node2D" unique_id=30656663]
 script = ExtResource("1_pr1ko")
-distance_v = -200.0
-distance_h = -120.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1299446919]
 sprite_frames = ExtResource("2_0erqf")
