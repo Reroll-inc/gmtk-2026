@@ -12,6 +12,7 @@ class_name Player
 
 @export var air_acceleration: float = 10.0
 @export var bounce_up_on_kill: float = -300.0
+@export var max_hp: int = 3
 
 @onready var mechanics: Node = $Mechanics
 
@@ -21,9 +22,12 @@ var _active: Mechanic = null
 var last_facing: Vector2 = Vector2.RIGHT
 var _kill_enabled: bool = true
 
+var hp: int = max_hp
+
 
 func _ready() -> void:
 	SignalBus.remove_mechanic.connect(remove_mechanic)
+	SignalBus.player_got_spike.connect(_handle_dmg)
 
 	for child: Node in mechanics.get_children():
 		if child is Mechanic:
@@ -33,6 +37,11 @@ func _ready() -> void:
 			_mechanics.append(m)
 
 	_switch_mechanic(_fallback())
+
+
+func _exit_tree() -> void:
+	SignalBus.remove_mechanic.disconnect(remove_mechanic)
+	SignalBus.player_got_spike.disconnect(_handle_dmg)
 
 
 func _fallback() -> Mechanic:
@@ -81,6 +90,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func _handle_dmg() -> void:
+	hp -= 1
+
+	if hp == 0:
+		SignalBus.game_failed.emit()
+	else:
+		SignalBus.player_receive_dmg.emit()
+
+
 func remove_mechanic(type: Mechanic.Type) -> void:
 	if type == Mechanic.Type.KILL:
 		_kill_enabled = false
@@ -123,7 +141,7 @@ func on_enemy_hit(enemy: Node2D) -> void:
 
 		enemy.call_deferred("kill")
 	else:
-		SignalBus.player_receive_dmg.emit()
+		_handle_dmg()
 
 
 func reset(start: Node2D) -> void:

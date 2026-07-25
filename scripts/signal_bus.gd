@@ -3,6 +3,11 @@ extends Node
 @warning_ignore("unused_signal")
 signal player_receive_dmg()
 
+
+@warning_ignore("unused_signal")
+signal player_got_spike()
+
+
 @warning_ignore("unused_signal")
 signal enemy_killed()
 
@@ -11,3 +16,6 @@ signal remove_mechanic(type: Mechanic.Type)
 
 @warning_ignore("unused_signal")
 signal level_completed()
+
+@warning_ignore("unused_signal")
+signal game_failed()

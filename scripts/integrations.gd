@@ -11,7 +11,7 @@ func _check_tile_map_events() -> void:
 		return
 
 	if tile_data.get_custom_data("is_spike") == true:
-		SignalBus.player_receive_dmg.emit()
+		SignalBus.player_got_spike.emit()
 
 	if tile_data.get_custom_data("is_exit") == true:
 		SignalBus.level_completed.emit()

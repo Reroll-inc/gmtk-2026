@@ -13,6 +13,11 @@ func _init() -> void:
 	SignalBus.remove_mechanic.connect(_handle_skill_removal)
 
 
+func _exit_tree() -> void:
+	SignalBus.player_receive_dmg.disconnect(_handle_player_receive_dmg)
+	SignalBus.remove_mechanic.disconnect(_handle_skill_removal)
+
+
 func _ready() -> void:
 	_player.reset(_start)
 
@@ -38,6 +43,10 @@ func _reset() -> void:
 # TODO
 func finish() -> void:
 	hide()
+
+
+func reload() -> void:
+	get_tree().reload_current_scene()
 
 
 # TODO
