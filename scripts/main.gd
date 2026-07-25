@@ -8,7 +8,7 @@ var _skills: Array[Mechanic.Type] = [
 	Mechanic.Type.CLIMB,
 	Mechanic.Type.DASH,
 	Mechanic.Type.DOUBLE_JUMP,
-	# Mechanic.Type.FLY,
+	Mechanic.Type.FLY,
 	Mechanic.Type.KILL,
 ]
 

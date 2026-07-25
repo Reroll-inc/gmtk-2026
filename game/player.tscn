@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://scripts/mechanics/dash.gd" id="4_d631c"]
 [ext_resource type="Script" uid="uid://cn02dbf02q4gf" path="res://scripts/mechanics/double_jump.gd" id="5_d631c"]
 [ext_resource type="Script" uid="uid://7fybflhvwvv8" path="res://scripts/mechanics/climb.gd" id="6_4fto2"]
+[ext_resource type="Script" uid="uid://b06enft8ehqro" path="res://scripts/mechanics/fly.gd" id="7_wkljg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vpi"]
 size = Vector2(14, 15)
@@ -13,6 +14,7 @@ size = Vector2(14, 15)
 [node name="Player" type="CharacterBody2D" unique_id=1622942523]
 collision_layer = 17
 script = ExtResource("1_w5y0b")
+friction = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2145180200]
 limit_left = 0
@@ -46,5 +48,8 @@ script = ExtResource("5_d631c")
 
 [node name="Climb" type="Node" parent="Mechanics" unique_id=980693463]
 script = ExtResource("6_4fto2")
+
+[node name="Fly" type="Node" parent="Mechanics" unique_id=1148148570]
+script = ExtResource("7_wkljg")
 
 [connection signal="timeout" from="Mechanics/Dash/Timer" to="Mechanics/Dash" method="_on_timer_timeout"]
