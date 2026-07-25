@@ -1,17 +1,17 @@
 extends Node2D
 class_name Ghost
 
-@export var speed: float = 50.0
+@export var speed: float = 1.0
+@export var vertical: bool = true
+@export var distance: float = -120.0
 
-@onready var _sprite: AnimatedSprite2D = $Sprite
-
-var direction: int = 1
-var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var _animator: AnimationPlayer = $AnimationPlayer
 
 
-func flip_direction() -> void:
-	direction *= -1
-	_sprite.flip_h = !_sprite.flip_h
+func _ready() -> void:
+	_preset_animation()
+
+	_animator.play("ghost/fly-v" if vertical else "ghost/fly-h", -1, speed)
 
 
 # This code should always expect the enemy to collide against the player.
@@ -24,3 +24,23 @@ func _on_hitbox_body_entered(player: Player) -> void:
 		queue_free()
 	else:
 		SignalBus.player_receive_dmg.emit()
+
+
+# Hardcoded property & keyframe
+func _preset_animation() -> void:
+	var lib: AnimationLibrary = _animator.get_animation_library("ghost").duplicate()
+	var anim: Animation = lib.get_animation("fly-v" if vertical else "fly-h").duplicate()
+	var value: Vector2 = Vector2()
+
+	if vertical:
+		value.y = distance
+	else:
+		value.x = distance
+
+	anim.track_set_key_value(0, 1, value)
+
+	lib.remove_animation("fly-v" if vertical else "fly-h")
+	lib.add_animation("fly-v" if vertical else "fly-h", anim)
+
+	_animator.remove_animation_library("ghost")
+	_animator.add_animation_library("ghost", lib)
