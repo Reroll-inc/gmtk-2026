@@ -84,6 +84,8 @@ func _physics_process(delta: float) -> void:
 func remove_mechanic(type: Mechanic.Type) -> void:
 	if type == Mechanic.Type.KILL:
 		_kill_enabled = false
+
+		print("Removing mechanic: Kill")
 		return
 
 	var mechanic_name: String = Mechanic.NODE_NAME[type]
@@ -122,3 +124,7 @@ func on_enemy_hit(enemy: Node2D) -> void:
 		enemy.call_deferred("kill")
 	else:
 		SignalBus.player_receive_dmg.emit()
+
+
+func reset(start: Node2D) -> void:
+	position = start.position

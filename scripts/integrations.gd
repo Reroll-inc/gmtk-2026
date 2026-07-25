@@ -1,9 +1,5 @@
 extends TileMapLayer
 
-signal on_die()
-
-signal on_complete()
-
 @export var player: Player
 
 
@@ -15,10 +11,10 @@ func _check_tile_map_events() -> void:
 		return
 
 	if tile_data.get_custom_data("is_spike") == true:
-		on_die.emit()
+		SignalBus.player_receive_dmg.emit()
 
 	if tile_data.get_custom_data("is_exit") == true:
-		on_complete.emit()
+		SignalBus.level_completed.emit()
 
 
 func _process(_delta: float) -> void:
