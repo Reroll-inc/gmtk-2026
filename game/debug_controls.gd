@@ -22,11 +22,12 @@ func _add_mechanic_card(mechanic_name: String) -> void:
 	mcard.setup(mechanic_name)
 
 
-func _on_remove_mechanic(mechanic_name: String) -> void:
+func _on_remove_mechanic(type: Mechanic.Type) -> void:
+	var mechanic_name: String = Mechanic.NODE_NAME[type]
 	var card = mechanics_bar.get_node_or_null(mechanic_name)
 	if card:
 		card.queue_free()
 
 
 func _on_button_pressed() -> void:
-	SignalBus.remove_mechanic.emit("Climb")
+	SignalBus.remove_mechanic.emit(Mechanic.Type.CLIMB)
