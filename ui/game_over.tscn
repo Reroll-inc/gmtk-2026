@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://ch3ugwgnt5l63"]
+
+[ext_resource type="PackedScene" uid="uid://duw1edtt4lgev" path="res://ui/button_small.tscn" id="1_oo8kp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo8kp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="LevelComplete" type="Control" unique_id=507274711]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=185059348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=1250679979]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=1706856950]
+layout_mode = 2
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=1385529221]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Llegaste al nivel X de X
+Te quedaban estas habilidades"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=778849858]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ButtonSmall" parent="VBoxContainer2/HBoxContainer" unique_id=1363346470 instance=ExtResource("1_oo8kp")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+
+[node name="ButtonSmall2" parent="VBoxContainer2/HBoxContainer" unique_id=917551809 instance=ExtResource("1_oo8kp")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+
+[node name="ButtonSmall3" parent="VBoxContainer2/HBoxContainer" unique_id=1977901635 instance=ExtResource("1_oo8kp")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+
+[node name="ButtonSmall4" parent="VBoxContainer2/HBoxContainer" unique_id=245096300 instance=ExtResource("1_oo8kp")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+
+[node name="ButtonSmall5" parent="VBoxContainer2/HBoxContainer" unique_id=1208616971 instance=ExtResource("1_oo8kp")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2" unique_id=1000279088]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Button2" type="Button" parent="VBoxContainer2/VBoxContainer2" unique_id=420674688]
+custom_minimum_size = Vector2(112, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_oo8kp")
+text = "PLAY AGAIN"
+
+[node name="Button4" type="Button" parent="VBoxContainer2/VBoxContainer2" unique_id=1233809907]
+custom_minimum_size = Vector2(80, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_oo8kp")
+text = "Menu"

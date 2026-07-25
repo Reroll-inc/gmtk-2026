@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://coyqxvgw737rb"]
+
+[ext_resource type="PackedScene" uid="uid://d1covadvr8oy" path="res://ui/button_big.tscn" id="1_uwrpb"]
+
+[node name="LevelComplete" type="Control" unique_id=507274711]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1250679979]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_top = 38.0
+offset_right = -73.0
+offset_bottom = -177.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1706856950]
+layout_mode = 2
+text = "Nivel completo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1385529221]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Elegí que otra habilitad vas a perder par el resto de la partida"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=778849858]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ButtonBig" parent="HBoxContainer" unique_id=306162381 instance=ExtResource("1_uwrpb")]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+
+[node name="ButtonBig2" parent="HBoxContainer" unique_id=1363346470 instance=ExtResource("1_uwrpb")]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+
+[node name="ButtonBig3" parent="HBoxContainer" unique_id=1013262922 instance=ExtResource("1_uwrpb")]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+
+[node name="ButtonBig4" parent="HBoxContainer" unique_id=304721298 instance=ExtResource("1_uwrpb")]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+
+[node name="ButtonBig5" parent="HBoxContainer" unique_id=91090104 instance=ExtResource("1_uwrpb")]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
