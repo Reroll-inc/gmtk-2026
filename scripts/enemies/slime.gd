@@ -22,7 +22,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if (
-		is_on_floor()
+		is_on_wall()
+		or is_on_floor()
 		and (
 			direction == 1 and not _right_floor_check.is_colliding()
 			or direction == -1 and not _left_floor_check.is_colliding()

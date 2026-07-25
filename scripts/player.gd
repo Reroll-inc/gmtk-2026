@@ -50,6 +50,7 @@ func _switch_mechanic(next: Mechanic) -> void:
 	if _active != null:
 		_active.on_enter()
 
+
 func _remove_mechanic(mechanic_name: String) -> void:
 	var m: Mechanic = mechanics.get_node_or_null(mechanic_name)
 	if m == null:
@@ -60,6 +61,7 @@ func _remove_mechanic(mechanic_name: String) -> void:
 		_switch_mechanic(_fallback())
 	_mechanics.erase(m)
 	m.queue_free()
+
 
 func _physics_process(delta: float) -> void:
 	var dir: Vector2 = read_input_direction()
