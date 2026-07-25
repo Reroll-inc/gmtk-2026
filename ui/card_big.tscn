@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b84fccf2eposl"]
+
+[ext_resource type="Texture2D" uid="uid://0xop8ps6fxhj" path="res://assets/icon.svg" id="1_am6w0"]
+
+[node name="CardBig" type="Button" unique_id=166628654]
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.6
+offset_right = 0.15999603
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=901758335]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.2
+offset_left = -15.920002
+offset_right = 15.920006
+offset_bottom = 95.36
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("1_am6w0")
+
+[node name="Label" type="Label" parent="." unique_id=1056761705]
+layout_mode = 0
+offset_left = -39.920002
+offset_top = 115.0
+offset_right = 136.08
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 16
+text = "habiliad"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=484798344]
+layout_mode = 0
+offset_left = -39.920002
+offset_top = 147.0
+offset_right = 136.08
+offset_bottom = 163.0
+text = "descripcion"
+horizontal_alignment = 1

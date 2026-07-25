@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://kvnlcsst7qh4"]
+
+[ext_resource type="Texture2D" uid="uid://b6kr8edkpn3or" path="res://sprites/tiles/tileset_16x16.png" id="1_3bxso"]
+[ext_resource type="Texture2D" uid="uid://0xop8ps6fxhj" path="res://assets/icon.svg" id="1_ewaii"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruvcr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob35n"]
+atlas = ExtResource("1_3bxso")
+region = Rect2(3.479187, 263.26813, 40.994812, 38.652252)
+
+[node name="Controls" type="Control" unique_id=1368860397]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1980745996]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 34.0
+offset_right = 364.0
+offset_bottom = 44.0
+text = "CONTROLS"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1836244728]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 89.0
+offset_right = 217.0
+offset_bottom = 227.0
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2130178134]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1049251554]
+custom_minimum_size = Vector2(16, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruvcr")
+text = "X"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=115240081]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1353857536]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1225092559]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruvcr")
+text = "X"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1311965764]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=88925671]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=1155750869]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruvcr")
+text = "X"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=1829716094]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer" unique_id=1292820417]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer4" unique_id=803329177]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruvcr")
+text = "X"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer4" unique_id=215466183]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer" unique_id=176855709]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer5" unique_id=1321833258]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruvcr")
+text = "X"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer5" unique_id=1478116503]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1430272906]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 80.0
+offset_right = 391.0
+offset_bottom = 229.0
+texture = SubResource("AtlasTexture_ob35n")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect" unique_id=19495478]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 7.0
+offset_right = 121.0
+offset_bottom = 140.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/VBoxContainer2" unique_id=593942069]
+clip_contents = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("1_ewaii")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label4" type="Label" parent="TextureRect/VBoxContainer2" unique_id=1481989291]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "preview
+habilidad"
+horizontal_alignment = 1

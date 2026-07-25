@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://bxur1vmp1se85"]
+
+[ext_resource type="Texture2D" uid="uid://b6kr8edkpn3or" path="res://sprites/tiles/tileset_16x16.png" id="1_ugevv"]
+[ext_resource type="Theme" uid="uid://cogqm6wn24nal" path="res://ui/theme.tres" id="2_cg6cf"]
+[ext_resource type="Texture2D" uid="uid://0xop8ps6fxhj" path="res://assets/icon.svg" id="3_vrvbs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugevv"]
+atlas = ExtResource("1_ugevv")
+region = Rect2(36.014984, 53.791985, 10.63501, 10.647995)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg6cf"]
+atlas = ExtResource("1_ugevv")
+region = Rect2(50.21521, 91.069466, 10.700394, 10.999626)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrvbs"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="Game" type="Control" unique_id=1152486364]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1670887106]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 74.0
+offset_bottom = 33.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=609952202]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ugevv")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=1888497781]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ugevv")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=2057784671]
+modulate = Color(1, 1, 1, 0.5568628)
+layout_mode = 2
+theme = ExtResource("2_cg6cf")
+texture = SubResource("AtlasTexture_cg6cf")
+expand_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=590619896]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 203.0
+offset_right = 436.0
+offset_bottom = 259.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vrvbs")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=653223755]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=226289278]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=234799854]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3_vrvbs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=149213495]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=466138202]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=911447386]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3_vrvbs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1427987368]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=2061225957]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=874822929]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3_vrvbs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=110408146]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer4" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=384997393]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=1828505666]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3_vrvbs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=904579519]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer5" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=566132377]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer5" unique_id=1616360638]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3_vrvbs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer5" unique_id=1323164665]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Habilidad"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=2031058032]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 20.0
+offset_right = 467.0
+offset_bottom = 36.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2" unique_id=694535740]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ugevv")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer2" unique_id=186345762]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ugevv")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer2" unique_id=538735282]
+layout_mode = 2
+theme = ExtResource("2_cg6cf")
+texture = SubResource("AtlasTexture_ugevv")
+expand_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer2" unique_id=712669648]
+layout_mode = 2
+theme = ExtResource("2_cg6cf")
+texture = SubResource("AtlasTexture_ugevv")
+expand_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="HBoxContainer2" unique_id=1166602425]
+layout_mode = 2
+theme = ExtResource("2_cg6cf")
+texture = SubResource("AtlasTexture_ugevv")
+expand_mode = 2
+
+[node name="TextureRect6" type="TextureRect" parent="HBoxContainer2" unique_id=2034854557]
+modulate = Color(1, 1, 1, 0.5568628)
+layout_mode = 2
+theme = ExtResource("2_cg6cf")
+texture = SubResource("AtlasTexture_cg6cf")
+expand_mode = 2
+
+[node name="TextureRect7" type="TextureRect" parent="HBoxContainer2" unique_id=1868821289]
+modulate = Color(1, 1, 1, 0.5568628)
+layout_mode = 2
+theme = ExtResource("2_cg6cf")
+texture = SubResource("AtlasTexture_cg6cf")
+expand_mode = 2

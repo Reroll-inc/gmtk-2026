@@ -41,6 +41,9 @@ enabled=PackedStringArray()
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_multichannel_signed_distance_field=true
+theme/custom="uid://cogqm6wn24nal"
+theme/custom_font="uid://dwahb2b0ojivr"
 
 [input]
 
