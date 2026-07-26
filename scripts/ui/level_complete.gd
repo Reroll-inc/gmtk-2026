@@ -2,8 +2,10 @@ extends Control
 class_name LevelComplete
 
 @onready var deck: Array[Node] = $SkillCards.get_children()
+@onready var score_card: ScoreCard = $ScoreCard
 
 var available_skills: Array = Mechanic.Type.values()
+var first_level: bool = true
 
 
 func _ready() -> void:
@@ -14,7 +16,19 @@ func _ready() -> void:
 
 
 func shuffle() -> void:
+	if first_level:
+		first_level = false
+
+		for card: MechanicCard in deck:
+			if card.type == Mechanic.Type.FLY:
+				card.visible = true
+				break
+
+		return
+
 	if available_skills.size() == 0:
+		score_card.visible = true
+
 		return
 
 	if available_skills.size() == 1:
