@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" uid="uid://b4sicfe1gs56b" path="res://scripts/ui/game_over.gd" id="1_5eixk"]
 [ext_resource type="PackedScene" uid="uid://duw1edtt4lgev" path="res://ui/button_small.tscn" id="1_oo8kp"]
+[ext_resource type="Texture2D" uid="uid://djttsqriu1na1" path="res://ui/assets/background_cards.png" id="2_xjda6"]
+[ext_resource type="Texture2D" uid="uid://chvxaahp5p7wt" path="res://ui/assets/button_primary.png" id="4_akjlf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo8kp"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8651"]
+texture = ExtResource("4_akjlf")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_55k1u"]
+texture = ExtResource("4_akjlf")
 
 [node name="GameOver" type="Control" unique_id=507274711]
 layout_mode = 3
@@ -21,6 +23,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5eixk")
+
+[node name="Background" type="TextureRect" parent="." unique_id=951065095]
+custom_minimum_size = Vector2(480, 272)
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 272.0
+texture = ExtResource("2_xjda6")
+stretch_mode = 5
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=185059348]
 layout_mode = 1
@@ -38,6 +48,7 @@ theme_override_constants/separation = 6
 
 [node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=1706856950]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.4117647, 0.25882354, 0.19215687, 1)
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -45,9 +56,10 @@ vertical_alignment = 1
 [node name="Label2" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=1385529221]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.4117647, 0.25882354, 0.19215687, 1)
 theme_override_font_sizes/font_size = 8
-text = "Llegaste al nivel X de X
-Te quedaban estas habilidades"
+text = "You reached level X of X
+Still clinging to:"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -85,7 +97,8 @@ custom_minimum_size = Vector2(112, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_oo8kp")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_k8651")
 text = "PLAY AGAIN"
 
 [node name="ToMenu" type="Button" parent="VBoxContainer2/VBoxContainer2" unique_id=1233809907]
@@ -94,7 +107,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_oo8kp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_55k1u")
 text = "Menu"
 
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer2/ToPlay" to="." method="_on_to_play_pressed"]
