@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bq1s3dso36sqx" path="res://scripts/game.gd" id="1_4fuuu"]
 [ext_resource type="TileSet" uid="uid://q274ar0j0lt0" path="res://sprites/tiles/tileset_16x16.tres" id="1_vasa2"]
 [ext_resource type="Script" uid="uid://c88403jwedf2o" path="res://scripts/integrations.gd" id="2_h7iqs"]
+[ext_resource type="Texture2D" uid="uid://btyrsbd2n6mpj" path="res://sprites/credits-bg.png" id="2_l8g03"]
 [ext_resource type="Texture2D" uid="uid://ddwrt77n5j3xb" path="res://sprites/game_bg.png" id="2_u5opy"]
 [ext_resource type="PackedScene" uid="uid://d27erohljh1tt" path="res://game/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://dsg38b2sivjds" path="res://game/enemies/slime.tscn" id="4_dxrkv"]
@@ -15,6 +16,10 @@ size = Vector2(13, 21)
 [node name="Game" type="Node2D" unique_id=797240526]
 script = ExtResource("1_4fuuu")
 disposed_skills = null
+
+[node name="CreditsBg" type="Sprite2D" parent="." unique_id=1838469859]
+position = Vector2(235, 553)
+texture = ExtResource("2_l8g03")
 
 [node name="bg" type="Sprite2D" parent="." unique_id=302051818]
 position = Vector2(687, 23)
