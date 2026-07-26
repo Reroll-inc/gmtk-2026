@@ -122,3 +122,5 @@ offset_right = 40.0
 offset_bottom = -20.0
 grow_vertical = 0
 script = ExtResource("3_f8e0v")
+title = "Score"
+description = "I don't need to track all the points I get from this. Let's go back to home."

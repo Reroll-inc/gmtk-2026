@@ -1,4 +1,4 @@
-extends Button
+extends MechanicCard
 class_name ScoreCard
 
 

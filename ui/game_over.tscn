@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://ch3ugwgnt5l63"]
 
 [ext_resource type="Script" uid="uid://b4sicfe1gs56b" path="res://scripts/ui/game_over.gd" id="1_5eixk"]
-[ext_resource type="PackedScene" uid="uid://duw1edtt4lgev" path="res://ui/button_small.tscn" id="1_oo8kp"]
+[ext_resource type="PackedScene" uid="uid://duw1edtt4lgev" path="res://ui/mechanic_preview.tscn" id="1_oo8kp"]
 [ext_resource type="Texture2D" uid="uid://djttsqriu1na1" path="res://ui/assets/background_cards.png" id="2_xjda6"]
 [ext_resource type="Texture2D" uid="uid://chvxaahp5p7wt" path="res://ui/assets/button_primary.png" id="4_akjlf"]
+[ext_resource type="Texture2D" uid="uid://dym6xltypwsqh" path="res://ui/assets/icons_16x16/icon_r06_c5.png" id="4_lgxpc"]
+[ext_resource type="Texture2D" uid="uid://dbat3jkpcddgo" path="res://ui/assets/back_icon.png" id="5_rcx4q"]
+[ext_resource type="Texture2D" uid="uid://bdc6vs0auc1b0" path="res://ui/assets/icons_16x16/icon_r08_c4.png" id="6_l87h4"]
+[ext_resource type="Texture2D" uid="uid://c6e0okmvc5ein" path="res://ui/assets/icons_16x16/icon_r07_c6.png" id="7_cnsmc"]
+[ext_resource type="Texture2D" uid="uid://b7v7n5gdtulav" path="res://ui/assets/icons_16x16/icon_r09_c1.png" id="8_v1fhu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8651"]
 texture = ExtResource("4_akjlf")
@@ -58,35 +63,48 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4117647, 0.25882354, 0.19215687, 1)
 theme_override_font_sizes/font_size = 8
-text = "You reached level X of X
-Still clinging to:"
+text = "Still clinging to:"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=778849858]
+[node name="MechanicList" type="HBoxContainer" parent="VBoxContainer2" unique_id=778849858]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ButtonSmall" parent="VBoxContainer2/HBoxContainer" unique_id=1363346470 instance=ExtResource("1_oo8kp")]
+[node name="Climb" parent="VBoxContainer2/MechanicList" unique_id=1363346470 instance=ExtResource("1_oo8kp")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
+image = ExtResource("4_lgxpc")
+title = "Climb"
 
-[node name="ButtonSmall2" parent="VBoxContainer2/HBoxContainer" unique_id=917551809 instance=ExtResource("1_oo8kp")]
+[node name="Dash" parent="VBoxContainer2/MechanicList" unique_id=917551809 instance=ExtResource("1_oo8kp")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
+type = 1
+image = ExtResource("5_rcx4q")
+title = "Dash"
 
-[node name="ButtonSmall3" parent="VBoxContainer2/HBoxContainer" unique_id=1977901635 instance=ExtResource("1_oo8kp")]
+[node name="DoubleJump" parent="VBoxContainer2/MechanicList" unique_id=1977901635 instance=ExtResource("1_oo8kp")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
+type = 2
+image = ExtResource("6_l87h4")
+title = "Double Jump"
 
-[node name="ButtonSmall4" parent="VBoxContainer2/HBoxContainer" unique_id=245096300 instance=ExtResource("1_oo8kp")]
+[node name="Fly" parent="VBoxContainer2/MechanicList" unique_id=245096300 instance=ExtResource("1_oo8kp")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
+type = 3
+image = ExtResource("7_cnsmc")
+title = "Fly"
 
-[node name="ButtonSmall5" parent="VBoxContainer2/HBoxContainer" unique_id=1208616971 instance=ExtResource("1_oo8kp")]
+[node name="Kill" parent="VBoxContainer2/MechanicList" unique_id=1208616971 instance=ExtResource("1_oo8kp")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
+type = 4
+image = ExtResource("8_v1fhu")
+title = "Kill"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2" unique_id=1000279088]
 layout_mode = 2
