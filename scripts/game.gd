@@ -34,6 +34,8 @@ func _handle_skill_removal(type: Mechanic.Type) -> void:
 
 
 func _reset() -> void:
+	disposed_skills.clear()
+
 	_player.reset(_start)
 
 	for enemy in _enemies:

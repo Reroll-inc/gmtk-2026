@@ -1,16 +1,9 @@
 [gd_scene format=3 uid="uid://ba7c4cu2p6jsp"]
 
-[ext_resource type="Texture2D" uid="uid://b6kr8edkpn3or" path="res://sprites/tiles/tileset_16x16.png" id="1_276te"]
 [ext_resource type="Script" uid="uid://dav0shdxo3q5c" path="res://scripts/ui/hud.gd" id="1_546lt"]
+[ext_resource type="Texture2D" uid="uid://be4qbabinbtbj" path="res://sprites/hp_1.tres" id="2_7ihmi"]
 [ext_resource type="Theme" uid="uid://cogqm6wn24nal" path="res://ui/theme.tres" id="2_546lt"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ya7t"]
-atlas = ExtResource("1_276te")
-region = Rect2(36.014984, 53.791985, 10.63501, 10.647995)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gg14f"]
-atlas = ExtResource("1_276te")
-region = Rect2(50.21521, 91.069466, 10.700394, 10.999626)
+[ext_resource type="Texture2D" uid="uid://dm34q4jdeamkn" path="res://sprites/hp_0.tres" id="4_en2x2"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1467298372]
 layer = 2
@@ -23,21 +16,21 @@ offset_right = 74.0
 offset_bottom = 33.0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HP" unique_id=1821095136]
+[node name="1" type="TextureRect" parent="HP" unique_id=1821095136]
 layout_mode = 2
-texture = SubResource("AtlasTexture_1ya7t")
+texture = ExtResource("2_7ihmi")
 expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="HP" unique_id=360773034]
+[node name="2" type="TextureRect" parent="HP" unique_id=360773034]
 layout_mode = 2
-texture = SubResource("AtlasTexture_1ya7t")
+texture = ExtResource("2_7ihmi")
 expand_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="HP" unique_id=129082332]
+[node name="3" type="TextureRect" parent="HP" unique_id=129082332]
 modulate = Color(1, 1, 1, 0.5568628)
 layout_mode = 2
 theme = ExtResource("2_546lt")
-texture = SubResource("AtlasTexture_gg14f")
+texture = ExtResource("4_en2x2")
 expand_mode = 2
 
 [node name="LevelProgress" type="HBoxContainer" parent="." unique_id=1775523720]
@@ -50,31 +43,31 @@ alignment = 1
 [node name="TextureRect3" type="TextureRect" parent="LevelProgress" unique_id=520392669]
 layout_mode = 2
 theme = ExtResource("2_546lt")
-texture = SubResource("AtlasTexture_1ya7t")
+texture = ExtResource("2_7ihmi")
 expand_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="LevelProgress" unique_id=253696460]
 layout_mode = 2
 theme = ExtResource("2_546lt")
-texture = SubResource("AtlasTexture_1ya7t")
+texture = ExtResource("2_7ihmi")
 expand_mode = 2
 
 [node name="TextureRect5" type="TextureRect" parent="LevelProgress" unique_id=1513209958]
 layout_mode = 2
 theme = ExtResource("2_546lt")
-texture = SubResource("AtlasTexture_1ya7t")
+texture = ExtResource("2_7ihmi")
 expand_mode = 2
 
 [node name="TextureRect6" type="TextureRect" parent="LevelProgress" unique_id=265590862]
 modulate = Color(1, 1, 1, 0.5568628)
 layout_mode = 2
 theme = ExtResource("2_546lt")
-texture = SubResource("AtlasTexture_gg14f")
+texture = ExtResource("4_en2x2")
 expand_mode = 2
 
 [node name="TextureRect7" type="TextureRect" parent="LevelProgress" unique_id=131166794]
 modulate = Color(1, 1, 1, 0.5568628)
 layout_mode = 2
 theme = ExtResource("2_546lt")
-texture = SubResource("AtlasTexture_gg14f")
+texture = ExtResource("4_en2x2")
 expand_mode = 2
