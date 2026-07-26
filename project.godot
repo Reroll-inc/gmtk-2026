@@ -14,6 +14,8 @@ config/name="Heroless"
 config/description="A journey to become a human again"
 run/main_scene="uid://da8sgbng7wcgu"
 config/features=PackedStringArray("4.6")
+boot_splash/use_filter=false
+boot_splash/image="uid://3s80i8kf1lcu"
 config/icon="res://assets/icon.svg"
 
 [autoload]
