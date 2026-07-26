@@ -8,18 +8,28 @@ class_name Ghost
 @onready var _animator: AnimationPlayer = $AnimationPlayer
 @onready var _hitbox_collision: CollisionShape2D = $Sprite/Hitbox/CollisionShape2D
 
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@export var sfx: AudioStream = preload(
+	"res://assets/sfx/ghost_loop.ogg"
+)
+@export var sfx_distance_cutoff: float = 200.0
+@export var sfx_attenuation: float = 1.5
 
 func _ready() -> void:
 	_preset_animation()
 
 	_animator.play("ghost/fly-v" if vertical else "ghost/fly-h", -1, speed)
 
+	audio_player.stream = sfx
+	audio_player.max_distance = sfx_distance_cutoff
+	audio_player.attenuation = sfx_attenuation
+	audio_player.play()
+
 
 # This code should always expect the enemy to collide against the player.
 # Nothing else is going to hit it as part of the hitbox, so it is safe.
 func _on_hitbox_body_entered(player: Player) -> void:
 	player.on_enemy_hit(self, Enemy.Type.GHOST)
-
 
 # Hardcoded property & keyframe
 func _preset_animation() -> void:

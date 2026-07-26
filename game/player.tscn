@@ -56,4 +56,6 @@ script = ExtResource("6_4fto2")
 [node name="Fly" type="Node" parent="Mechanics" unique_id=1148148570]
 script = ExtResource("7_wkljg")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1566050294]
+
 [connection signal="timeout" from="Mechanics/Dash/Timer" to="Mechanics/Dash" method="_on_timer_timeout"]
