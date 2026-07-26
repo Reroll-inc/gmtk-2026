@@ -19,6 +19,7 @@ class_name Player
 @onready var audio_listener: AudioListener2D = $AudioListener2D
 @onready var camera: Camera2D = $Camera2D
 @onready var hud: CanvasLayer = $Hud
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var dmg_sound: AudioStream = preload("res://assets/sfx/powerdown07.mp3")
 @export var fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
@@ -34,6 +35,7 @@ var hp: int = max_hp
 
 
 func _ready() -> void:
+	set_anim("idle")
 	audio_listener.make_current()
 	SignalBus.remove_mechanic.connect(remove_mechanic)
 	SignalBus.player_got_spike.connect(_handle_dmg)
@@ -51,6 +53,10 @@ func _ready() -> void:
 
 	_switch_mechanic(_fallback())
 
+func set_anim(anim_name: String) -> void:
+	if anim.animation != anim_name:
+		anim.play(anim_name)
+	anim.flip_h = last_facing.x < 0.0
 
 func _exit_tree() -> void:
 	SignalBus.remove_mechanic.disconnect(remove_mechanic)

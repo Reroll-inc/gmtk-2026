@@ -27,6 +27,8 @@ func can_activate() -> bool:
 func on_enter() -> void:
 	var dir: Vector2 = player.read_input_direction()
 	_dir = dir if dir != Vector2.ZERO else player.last_facing
+	#todo: dash anim
+	player.set_anim("fall")
 
 	_time_left = dash_duration
 	_cooling_down = true

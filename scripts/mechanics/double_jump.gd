@@ -20,6 +20,7 @@ func on_physics_process(_delta: float) -> bool:
 	_jumps_used += 1
 	player.velocity.y = player.jump_height
 	_play_jump()
+	player.set_anim("jump_start")
 	return false
 
 

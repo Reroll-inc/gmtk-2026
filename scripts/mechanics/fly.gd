@@ -21,6 +21,8 @@ func on_physics_process(delta: float) -> bool:
 
 	player.velocity = dir * fly_speed
 	_play_flap(delta, dir)
+	#todo: fly/hover anim
+	player.set_anim("fall")
 
 	return true
 
