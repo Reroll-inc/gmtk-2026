@@ -11,6 +11,8 @@ func _init() -> void:
 	SignalBus.game_failed.connect(_handle_on_fail)
 	SignalBus.level_completed.connect(_handle_level_completed)
 	SignalBus.to_next_level.connect(_handle_to_next_level)
+	SignalBus.to_main_menu.connect(_handle_game_to_main_menu)
+	SignalBus.game_completed.connect(_handle_credits)
 
 	main_menu.to_controls.connect(_handle_to_controls)
 	control_menu.back.connect(_handle_controls_to_main_menu)
@@ -23,6 +25,10 @@ func _ready() -> void:
 
 func _handle_game_start() -> void:
 	get_tree().root.remove_child(main_menu)
+
+
+func _handle_game_to_main_menu() -> void:
+	get_tree().root.add_child(main_menu)
 
 
 func _handle_to_controls() -> void:
@@ -50,4 +56,8 @@ func _handle_level_completed() -> void:
 
 
 func _handle_to_next_level() -> void:
+	get_tree().root.remove_child(level_complete)
+
+
+func _handle_credits() -> void:
 	get_tree().root.remove_child(level_complete)

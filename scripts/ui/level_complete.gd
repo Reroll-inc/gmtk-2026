@@ -53,6 +53,8 @@ func shuffle() -> void:
 
 func _handle_skill_reset() -> void:
 	available_skills = Mechanic.Type.values()
+	first_level = true
+	score_card.visible = false
 
 	for card: MechanicCard in deck:
 		card.visible = false

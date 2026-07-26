@@ -1,6 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
+enum Position {
+	START,
+	CREDITS,
+}
+
 @export var jump_height: float = -450.0
 @export var gravity: float = 20.5
 @export var jump_hold: float = 0.5
@@ -14,22 +19,28 @@ class_name Player
 @export var bounce_up_on_kill: float = -300.0
 @export var max_hp: int = 3
 
+@export var dmg_sound: AudioStream = preload("res://assets/sfx/powerdown07.mp3")
+@export var fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
+@export var kill_enemy_sound: AudioStream = preload("res://assets/sfx/poyo.mp3")
+
 @onready var mechanics: Node = $Mechanics
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_listener: AudioListener2D = $AudioListener2D
 @onready var camera: Camera2D = $Camera2D
 @onready var hud: CanvasLayer = $Hud
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-
-@export var dmg_sound: AudioStream = preload("res://assets/sfx/powerdown07.mp3")
-@export var fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
-@export var kill_enemy_sound: AudioStream = preload("res://assets/sfx/poyo.mp3")
+@onready var _camera_limit: Vector2i = Vector2i(camera.limit_right, camera.limit_bottom)
 
 var _mechanics: Array[Mechanic] = []
 var _active: Mechanic = null
 
 var last_facing: Vector2 = Vector2.RIGHT
 var _kill_enabled: bool = true
+
+var _credits_limit: Dictionary[String, Vector2i] = {
+	top = Vector2i(0, 31 * 16),
+	bottom = Vector2i(30 * 16, 48 * 16),
+}
 
 var hp: int = max_hp
 
@@ -39,8 +50,8 @@ func _ready() -> void:
 	audio_listener.make_current()
 	SignalBus.remove_mechanic.connect(remove_mechanic)
 	SignalBus.player_got_spike.connect(_handle_dmg)
-	SignalBus.game_failed.connect(_handle_exit)
-	SignalBus.level_completed.connect(_handle_exit)
+	SignalBus.game_failed.connect(pause)
+	SignalBus.level_completed.connect(pause)
 	SignalBus.game_start.connect(_handle_start)
 	SignalBus.to_next_level.connect(_handle_start)
 
@@ -53,16 +64,18 @@ func _ready() -> void:
 
 	_switch_mechanic(_fallback())
 
+
 func set_anim(anim_name: String) -> void:
 	if anim.animation != anim_name:
 		anim.play(anim_name)
 	anim.flip_h = last_facing.x < 0.0
 
+
 func _exit_tree() -> void:
 	SignalBus.remove_mechanic.disconnect(remove_mechanic)
 	SignalBus.player_got_spike.disconnect(_handle_dmg)
-	SignalBus.game_failed.disconnect(_handle_exit)
-	SignalBus.level_completed.disconnect(_handle_exit)
+	SignalBus.game_failed.disconnect(pause)
+	SignalBus.level_completed.disconnect(pause)
 	SignalBus.game_start.disconnect(_handle_start)
 	SignalBus.to_next_level.disconnect(_handle_start)
 
@@ -140,9 +153,14 @@ func _play_fail_sound() -> void:
 	audio_player.play()
 
 
-func _handle_exit() -> void:
+func pause() -> void:
 	camera.enabled = false
 	hud.hide()
+
+
+func unpause() -> void:
+	camera.enabled = true
+	hud.show()
 
 
 func _handle_start() -> void:
@@ -206,5 +224,18 @@ func _play_kill_sound() -> void:
 	audio_player.play()
 
 
-func reset(start: Node2D) -> void:
-	position = start.position
+func reset(type: Position, marker: Marker2D) -> void:
+	position = marker.position
+	velocity = Vector2.ZERO
+
+	if type == Position.CREDITS:
+		camera.enabled = true
+		camera.limit_left = _credits_limit.top.x
+		camera.limit_top = _credits_limit.top.y
+		camera.limit_right = _credits_limit.bottom.x
+		camera.limit_bottom = _credits_limit.bottom.y
+	else:
+		camera.limit_left = 0
+		camera.limit_top = 0
+		camera.limit_right = _camera_limit.x
+		camera.limit_bottom = _camera_limit.y

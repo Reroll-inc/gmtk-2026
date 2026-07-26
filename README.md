@@ -9,3 +9,4 @@ A search to returning back to being a normal being.
 
 - Tileset: https://m-beedesign.itch.io/simple-platformer-tileset-8x8-and-16x16
 - UI: https://free-game-assets.itch.io/free-basic-pixel-art-ui-for-rpg
+- House: https://meitdev.itch.io/top-down-house
