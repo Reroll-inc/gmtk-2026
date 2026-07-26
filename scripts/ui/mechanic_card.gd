@@ -1,4 +1,5 @@
 extends Button
+class_name MechanicCard
 
 @export var type: Mechanic.Type
 

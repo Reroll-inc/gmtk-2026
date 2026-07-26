@@ -3,7 +3,7 @@ extends CanvasLayer
 var main_menu: MainMenu = preload("res://ui/main_menu.tscn").instantiate()
 var control_menu: ControlMenu = preload("res://ui/controls.tscn").instantiate()
 var game_over: GameOver = preload("res://ui/game_over.tscn").instantiate()
-var level_complete: Control = preload("res://ui/level_complete.tscn").instantiate()
+var level_complete: LevelComplete = preload("res://ui/level_complete.tscn").instantiate()
 
 
 func _init() -> void:
@@ -46,6 +46,7 @@ func _handle_game_over_to_main_menu() -> void:
 
 func _handle_level_completed() -> void:
 	get_tree().root.add_child(level_complete)
+	level_complete.shuffle()
 
 
 func _handle_to_next_level() -> void:

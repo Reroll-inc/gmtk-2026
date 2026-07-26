@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://coyqxvgw737rb"]
 
+[ext_resource type="Script" uid="uid://dive47lrmhecu" path="res://scripts/ui/level_complete.gd" id="1_jq5il"]
 [ext_resource type="PackedScene" uid="uid://d1covadvr8oy" path="res://ui/mechanic_card.tscn" id="1_uwrpb"]
 
 [node name="LevelComplete" type="Control" unique_id=507274711]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jq5il")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1250679979]
 layout_mode = 1
