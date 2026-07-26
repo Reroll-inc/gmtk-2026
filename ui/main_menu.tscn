@@ -1,16 +1,13 @@
 [gd_scene format=3 uid="uid://bsb27ubprribx"]
 
-[ext_resource type="Script" uid="uid://citmgrrtcfkqo" path="res://scripts/ui/main_menu.gd" id="1_t7e0r"]
+[ext_resource type="Script" uid="uid://citmgrrtcfkqo" path="res://scripts/ui/main_menu.gd" id="1_0dkrt"]
+[ext_resource type="Texture2D" uid="uid://b4bbxxbg3dejw" path="res://ui/assets/buttom_primary.png" id="1_t7e0r"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl0q7"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0dkrt"]
+texture = ExtResource("1_t7e0r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wk0pr"]
+texture = ExtResource("1_t7e0r")
 
 [node name="MainMenu" type="Control" unique_id=873225988]
 layout_mode = 3
@@ -23,22 +20,18 @@ offset_right = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t7e0r")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_0dkrt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=71550949]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -74.0
-offset_right = 128.0
-offset_bottom = 74.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 6
+layout_mode = 0
+offset_left = 90.0
+offset_top = 99.0
+offset_right = 402.0
+offset_bottom = 195.0
+theme_override_constants/separation = 8
+alignment = 1
 
 [node name="TitleMarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=663029915]
 layout_mode = 2
@@ -46,34 +39,35 @@ theme_override_constants/margin_bottom = 12
 
 [node name="Title" type="Label" parent="VBoxContainer/TitleMarginContainer" unique_id=1549103713]
 layout_mode = 2
-text = "NOMBRE DEL JUEGO"
+text = "HEROLESS"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="VBoxContainer" unique_id=716729292]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "cada nivel perdes una habilidad"
+text = "A journey to become a human again"
+horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1303681905]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=342449548]
 layout_mode = 2
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_top = 8
 
-[node name="Play" type="Button" parent="VBoxContainer" unique_id=402430012]
-custom_minimum_size = Vector2(112, 16)
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1768512167]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ButtonPlay" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer2" unique_id=402430012]
+custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_gl0q7")
-action_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_0dkrt")
 text = "PLAY"
 
-[node name="Controls" type="Button" parent="VBoxContainer" unique_id=1904394146]
-custom_minimum_size = Vector2(80, 16)
+[node name="ButtonControls" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer2" unique_id=1904394146]
+custom_minimum_size = Vector2(80, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_gl0q7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wk0pr")
 text = "Controls"
-
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]

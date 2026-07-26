@@ -52,16 +52,6 @@ offset_right = 467.0
 offset_bottom = 36.0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer2" unique_id=2081968900]
-layout_mode = 2
-texture = SubResource("AtlasTexture_1ya7t")
-expand_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer2" unique_id=1808007634]
-layout_mode = 2
-texture = SubResource("AtlasTexture_1ya7t")
-expand_mode = 2
-
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer2" unique_id=520392669]
 layout_mode = 2
 theme = ExtResource("2_p50ye")
