@@ -13,7 +13,7 @@ class_name Ghost
 	"res://assets/sfx/ghost_loop.ogg"
 )
 @export var sfx_distance_cutoff: float = 200.0
-@export var sfx_attenuation: float = 1.5
+@export var sfx_attenuation: float = 2.0
 
 func _ready() -> void:
 	_preset_animation()

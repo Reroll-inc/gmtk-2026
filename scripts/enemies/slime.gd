@@ -12,6 +12,19 @@ class_name Slime
 var direction: int = 1
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@export var sfx: AudioStream = preload(
+	"res://assets/sfx/dumping.mp3"
+)
+@export var step_interval: float = 0.5
+var _step_timer: float = 0.0
+@export var sfx_distance_cutoff: float = 200.0
+@export var sfx_attenuation: float = 2.0
+
+func _ready() -> void:
+	audio_player.stream = sfx
+	audio_player.max_distance = sfx_distance_cutoff
+	audio_player.attenuation = sfx_attenuation
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -23,6 +36,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	_play_step(delta)
+
 	if (
 		is_on_wall()
 		or is_on_floor()
@@ -32,6 +47,15 @@ func _physics_process(delta: float) -> void:
 		)
 	):
 		_flip_direction()
+
+func _play_step(delta: float) -> void:
+	_step_timer -= delta
+	if _step_timer > 0.0 or absf(velocity.x) < 10.0:
+		return
+	_step_timer = step_interval
+	audio_player.stream = sfx
+	audio_player.pitch_scale = randf_range(1.4, 1.6)
+	audio_player.play()
 
 
 func _flip_direction() -> void:
