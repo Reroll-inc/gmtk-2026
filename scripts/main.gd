@@ -22,11 +22,12 @@ func _init() -> void:
 	SignalBus.game_failed.connect(_handle_on_fail)
 	SignalBus.enemy_killed.connect(_handle_enemy_kill)
 	SignalBus.player_receive_dmg.connect(_handle_player_dmg)
+	SignalBus.game_start.connect(_handle_game_start)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	game.show()
+	game.pause()
 
 
 func _handle_enemy_kill(type: Enemy.Type) -> void:
@@ -67,3 +68,8 @@ func _handle_on_complete() -> void:
 	SignalBus.remove_mechanic.emit(type)
 
 	game.reset()
+
+
+func _handle_game_start() -> void:
+	game.unpause()
+	game.show()

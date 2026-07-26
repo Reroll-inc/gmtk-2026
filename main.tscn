@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clwmmkgsek1ik" path="res://scripts/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c12tjakih4u0m" path="res://game/game.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ddtv1kkv1r8vl" path="res://ui/gui.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node" unique_id=2074224198]
 script = ExtResource("1_0xm2m")
@@ -10,4 +11,9 @@ points = Dictionary[int, int]({
 1: 200
 })
 
+[node name="Node" type="Node" parent="." unique_id=677465171]
+
 [node name="Game" parent="." unique_id=797240526 instance=ExtResource("1_ig7tw")]
+visible = false
+
+[node name="GUI" parent="." unique_id=1018847722 instance=ExtResource("3_h2yge")]

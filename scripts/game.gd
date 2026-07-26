@@ -42,6 +42,7 @@ func _reset() -> void:
 
 # TODO
 func finish() -> void:
+	get_tree().paused = true
 	hide()
 
 
@@ -53,3 +54,11 @@ func reload() -> void:
 func reset() -> void:
 	show()
 	_reset()
+
+
+func pause() -> void:
+	process_mode = PROCESS_MODE_DISABLED
+
+
+func unpause() -> void:
+	process_mode = PROCESS_MODE_INHERIT
