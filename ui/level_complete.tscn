@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dive47lrmhecu" path="res://scripts/ui/level_complete.gd" id="1_jq5il"]
 [ext_resource type="PackedScene" uid="uid://d1covadvr8oy" path="res://ui/mechanic_card.tscn" id="1_uwrpb"]
+[ext_resource type="Texture2D" uid="uid://dvrxtxochqflp" path="res://ui/assets/background-mainmenu.png" id="2_7e27b"]
 [ext_resource type="Texture2D" uid="uid://dym6xltypwsqh" path="res://ui/assets/icons_16x16/icon_r06_c5.png" id="3_e4grf"]
 [ext_resource type="Script" uid="uid://co1gvbywb1oso" path="res://scripts/ui/score_card.gd" id="3_f8e0v"]
 [ext_resource type="Texture2D" uid="uid://dbat3jkpcddgo" path="res://ui/assets/back_icon.png" id="4_udnki"]
@@ -18,40 +19,51 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jq5il")
 
+[node name="Background" type="TextureRect" parent="." unique_id=247694832]
+custom_minimum_size = Vector2(480, 272)
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 272.0
+texture = ExtResource("2_7e27b")
+stretch_mode = 5
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1250679979]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 66.0
-offset_top = 38.0
+offset_top = 48.0
 offset_right = -73.0
-offset_bottom = -177.0
+offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 6
 
 [node name="Title" type="Label" parent="VBoxContainer" unique_id=1706856950]
 layout_mode = 2
-text = "Nivel completo"
+theme_override_colors/font_color = Color(0.4117647, 0.25882354, 0.19215687, 1)
+text = "LEVEL COMPLETE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="VBoxContainer" unique_id=1385529221]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.4117647, 0.25882354, 0.19215687, 1)
 theme_override_font_sizes/font_size = 8
-text = "Elegí que otra habilitad vas a perder par el resto de la partida"
+text = "Choose what to let go of"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="SkillCards" type="HBoxContainer" parent="." unique_id=778849858]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -160.0
+offset_top = -179.0
+offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 8
