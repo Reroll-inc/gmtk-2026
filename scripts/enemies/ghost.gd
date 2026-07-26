@@ -9,11 +9,10 @@ class_name Ghost
 @onready var _hitbox_collision: CollisionShape2D = $Sprite/Hitbox/CollisionShape2D
 
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@export var sfx: AudioStream = preload(
-	"res://assets/sfx/ghost_loop.ogg"
-)
+@export var sfx: AudioStream = preload("res://assets/sfx/ghost_loop.ogg")
 @export var sfx_distance_cutoff: float = 200.0
 @export var sfx_attenuation: float = 2.0
+
 
 func _ready() -> void:
 	_preset_animation()
@@ -30,6 +29,7 @@ func _ready() -> void:
 # Nothing else is going to hit it as part of the hitbox, so it is safe.
 func _on_hitbox_body_entered(player: Player) -> void:
 	player.on_enemy_hit(self, Enemy.Type.GHOST)
+
 
 # Hardcoded property & keyframe
 func _preset_animation() -> void:

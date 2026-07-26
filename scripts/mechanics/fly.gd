@@ -5,14 +5,14 @@ extends Mechanic
 
 @export var flap_interval: float = 1.0
 var _flap_timer: float = 0.0
-@export var flap_sound: AudioStream = preload(
-	"res://assets/sfx/flap.ogg"
-)
+@export var flap_sound: AudioStream = preload("res://assets/sfx/flap.ogg")
+
 
 func can_activate() -> bool:
 	if Input.is_action_pressed("fly"):
 		return true
 	return false
+
 
 func on_physics_process(delta: float) -> bool:
 	if not Input.is_action_pressed("fly"):
@@ -23,6 +23,7 @@ func on_physics_process(delta: float) -> bool:
 	_play_flap(delta, dir)
 
 	return true
+
 
 func _play_flap(delta: float, inp: Vector2) -> void:
 	var extra = 1.0 if inp.length_squared() < 0.1 else 1.5
@@ -37,6 +38,7 @@ func _play_flap(delta: float, inp: Vector2) -> void:
 
 func is_interruptible() -> bool:
 	return true
+
 
 func is_interruptible_by(_m: Mechanic) -> bool:
 	# i want to allow the player to dash during flight,

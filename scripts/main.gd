@@ -15,7 +15,6 @@ var _skills: Array[Mechanic.Type] = [
 	Mechanic.Type.FLY,
 	Mechanic.Type.KILL,
 ]
-var _first_time: bool = true
 
 
 func _init() -> void:
@@ -67,12 +66,8 @@ func _handle_on_complete() -> void:
 
 	SignalBus.remove_mechanic.emit(type)
 
-	game.reset()
+	game.start()
 
 
 func _handle_game_start() -> void:
-	if _first_time:
-		_first_time = false
-		game.start()
-	else:
-		game.restart()
+	game.start()

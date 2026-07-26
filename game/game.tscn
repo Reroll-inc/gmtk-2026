@@ -131,5 +131,5 @@ tile_set = ExtResource("1_vasa2")
 collision_enabled = false
 
 [node name="Start" type="Marker2D" parent="." unique_id=809326603]
-position = Vector2(660, 245)
+position = Vector2(20, 247)
 gizmo_extents = 8.0

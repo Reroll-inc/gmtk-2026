@@ -48,17 +48,6 @@ func stop() -> void:
 func start() -> void:
 	process_mode = PROCESS_MODE_INHERIT
 	show()
-
-
-func restart() -> void:
-	process_mode = PROCESS_MODE_INHERIT
-	get_tree().reload_current_scene()
-	show()
-
-
-# TODO
-func reset() -> void:
-	show()
 	_reset()
 
 
