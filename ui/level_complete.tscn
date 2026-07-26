@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dive47lrmhecu" path="res://scripts/ui/level_complete.gd" id="1_jq5il"]
 [ext_resource type="PackedScene" uid="uid://d1covadvr8oy" path="res://ui/mechanic_card.tscn" id="1_uwrpb"]
+[ext_resource type="Script" uid="uid://co1gvbywb1oso" path="res://scripts/ui/score_card.gd" id="3_f8e0v"]
 
 [node name="LevelComplete" type="Control" unique_id=507274711]
 layout_mode = 3
@@ -74,3 +75,18 @@ type = 3
 custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
 type = 4
+
+[node name="ScoreCard" parent="." unique_id=69566958 instance=ExtResource("1_uwrpb")]
+visible = false
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = -140.0
+offset_right = 40.0
+offset_bottom = -20.0
+grow_vertical = 0
+script = ExtResource("3_f8e0v")
