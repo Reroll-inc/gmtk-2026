@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dive47lrmhecu" path="res://scripts/ui/level_complete.gd" id="1_jq5il"]
 [ext_resource type="PackedScene" uid="uid://d1covadvr8oy" path="res://ui/mechanic_card.tscn" id="1_uwrpb"]
+[ext_resource type="Texture2D" uid="uid://dym6xltypwsqh" path="res://ui/assets/icons_16x16/icon_r06_c5.png" id="3_e4grf"]
 [ext_resource type="Script" uid="uid://co1gvbywb1oso" path="res://scripts/ui/score_card.gd" id="3_f8e0v"]
+[ext_resource type="Texture2D" uid="uid://dbat3jkpcddgo" path="res://ui/assets/back_icon.png" id="4_udnki"]
+[ext_resource type="Texture2D" uid="uid://bdc6vs0auc1b0" path="res://ui/assets/icons_16x16/icon_r08_c4.png" id="5_udnki"]
+[ext_resource type="Texture2D" uid="uid://c6e0okmvc5ein" path="res://ui/assets/icons_16x16/icon_r07_c6.png" id="6_w7uui"]
+[ext_resource type="Texture2D" uid="uid://b7v7n5gdtulav" path="res://ui/assets/icons_16x16/icon_r09_c1.png" id="7_wem4d"]
 
 [node name="LevelComplete" type="Control" unique_id=507274711]
 layout_mode = 3
@@ -55,26 +60,41 @@ alignment = 1
 [node name="ClimbCard" parent="SkillCards" unique_id=306162381 instance=ExtResource("1_uwrpb")]
 custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
+image = ExtResource("3_e4grf")
+title = "Climb"
+description = "Trepar"
 
 [node name="DashCard" parent="SkillCards" unique_id=1363346470 instance=ExtResource("1_uwrpb")]
 custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
 type = 1
+image = ExtResource("4_udnki")
+title = "Dash"
+description = "Dashear"
 
 [node name="DoubleJumpCard" parent="SkillCards" unique_id=1013262922 instance=ExtResource("1_uwrpb")]
 custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
 type = 2
+image = ExtResource("5_udnki")
+title = "Double Jump"
+description = "DDDD"
 
 [node name="FlyCard" parent="SkillCards" unique_id=304721298 instance=ExtResource("1_uwrpb")]
 custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
 type = 3
+image = ExtResource("6_w7uui")
+title = "Fly"
+description = "Flyyy"
 
 [node name="KillCard" parent="SkillCards" unique_id=91090104 instance=ExtResource("1_uwrpb")]
 custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
 type = 4
+image = ExtResource("7_wem4d")
+title = "Kill"
+description = "Die"
 
 [node name="ScoreCard" parent="." unique_id=69566958 instance=ExtResource("1_uwrpb")]
 visible = false
