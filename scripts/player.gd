@@ -17,16 +17,11 @@ class_name Player
 @onready var mechanics: Node = $Mechanics
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_listener: AudioListener2D = $AudioListener2D
+@onready var camera: Camera2D = $Camera2D
 
-@export var dmg_sound: AudioStream = preload(
-	"res://assets/sfx/powerdown07.mp3"
-)
-@export var fail_sound: AudioStream = preload(
-	"res://assets/sfx/division_of_ninja.mp3"
-)
-@export var kill_enemy_sound: AudioStream = preload(
-	"res://assets/sfx/poyo.mp3"
-)
+@export var dmg_sound: AudioStream = preload("res://assets/sfx/powerdown07.mp3")
+@export var fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
+@export var kill_enemy_sound: AudioStream = preload("res://assets/sfx/poyo.mp3")
 
 var _mechanics: Array[Mechanic] = []
 var _active: Mechanic = null
@@ -41,6 +36,8 @@ func _ready() -> void:
 	audio_listener.make_current()
 	SignalBus.remove_mechanic.connect(remove_mechanic)
 	SignalBus.player_got_spike.connect(_handle_dmg)
+	SignalBus.game_failed.connect(_handle_exit)
+	SignalBus.game_start.connect(_handle_start)
 
 	for child: Node in mechanics.get_children():
 		if child is Mechanic:
@@ -55,6 +52,7 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	SignalBus.remove_mechanic.disconnect(remove_mechanic)
 	SignalBus.player_got_spike.disconnect(_handle_dmg)
+	SignalBus.game_failed.disconnect(_handle_exit)
 
 
 func _fallback() -> Mechanic:
@@ -113,6 +111,7 @@ func _handle_dmg() -> void:
 		_play_dmg_sound()
 		SignalBus.player_receive_dmg.emit()
 
+
 func _play_dmg_sound() -> void:
 	if audio_player.playing:
 		audio_player.stop()
@@ -120,12 +119,23 @@ func _play_dmg_sound() -> void:
 	audio_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_player.play()
 
+
 func _play_fail_sound() -> void:
 	if audio_player.playing:
 		audio_player.stop()
 	audio_player.stream = fail_sound
 	audio_player.pitch_scale = 1.0
 	audio_player.play()
+
+
+func _handle_exit() -> void:
+	camera.enabled = false
+
+
+func _handle_start() -> void:
+	hp = max_hp
+	camera.enabled = true
+
 
 func remove_mechanic(type: Mechanic.Type) -> void:
 	if type == Mechanic.Type.KILL:
@@ -172,6 +182,7 @@ func on_enemy_hit(enemy: Node2D, type: Enemy.Type) -> void:
 		enemy.call_deferred("kill")
 	else:
 		_handle_dmg()
+
 
 func _play_kill_sound() -> void:
 	if audio_player.playing:

@@ -1,16 +1,42 @@
 extends Control
 
-var main_menu = preload("res://ui/main_menu.tscn").instantiate()
+var main_menu: MainMenu = preload("res://ui/main_menu.tscn").instantiate()
+var control_menu: ControlMenu = preload("res://ui/controls.tscn").instantiate()
+var game_over: GameOver = preload("res://ui/game_over.tscn").instantiate()
 
 
 func _init() -> void:
 	SignalBus.game_start.connect(_handle_game_start)
+	SignalBus.game_failed.connect(_handle_on_fail)
+
+	main_menu.to_controls.connect(_handle_to_controls)
+	control_menu.back.connect(_handle_controls_to_main_menu)
+	game_over.to_menu.connect(_handle_game_over_to_main_menu)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().root.call_deferred("add_child", main_menu)
 
 
 func _handle_game_start() -> void:
-	get_tree().root.call_deferred("remove_child", main_menu)
+	# get_tree().root.call_deferred_thread_group("remove_child", main_menu)
+	pass
+
+
+func _handle_to_controls() -> void:
+	get_tree().root.remove_child(main_menu)
+	get_tree().root.add_child(control_menu)
+
+
+func _handle_controls_to_main_menu() -> void:
+	get_tree().root.remove_child(control_menu)
+	get_tree().root.add_child(main_menu)
+
+
+func _handle_on_fail() -> void:
+	get_tree().root.add_child(game_over)
+
+
+func _handle_game_over_to_main_menu() -> void:
+	get_tree().root.remove_child(control_menu)
+	get_tree().root.add_child(game_over)

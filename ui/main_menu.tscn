@@ -25,13 +25,17 @@ size_flags_vertical = 4
 script = ExtResource("1_0dkrt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=71550949]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 99.0
-offset_right = 402.0
-offset_bottom = 195.0
-theme_override_constants/separation = 8
-alignment = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="TopMargin" type="MarginContainer" parent="VBoxContainer" unique_id=308952749]
+layout_mode = 2
+theme_override_constants/margin_top = 64
 
 [node name="TitleMarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=663029915]
 layout_mode = 2
@@ -42,28 +46,30 @@ layout_mode = 2
 text = "HEROLESS"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="VBoxContainer" unique_id=716729292]
+[node name="Description" type="RichTextLabel" parent="VBoxContainer" unique_id=1093775130]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "A journey to become a human again"
+theme_override_font_sizes/italics_font_size = 8
+bbcode_enabled = true
+text = "[i]A journey to become a human again[/i]"
+fit_content = true
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=342449548]
+[node name="ButtonsMargin" type="MarginContainer" parent="VBoxContainer" unique_id=342449548]
 layout_mode = 2
 theme_override_constants/margin_top = 8
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1768512167]
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer/ButtonsMargin" unique_id=1768512167]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ButtonPlay" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer2" unique_id=402430012]
+[node name="ButtonPlay" type="Button" parent="VBoxContainer/ButtonsMargin/Buttons" unique_id=402430012]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("StyleBoxTexture_0dkrt")
 text = "PLAY"
 
-[node name="ButtonControls" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer2" unique_id=1904394146]
+[node name="ButtonControls" type="Button" parent="VBoxContainer/ButtonsMargin/Buttons" unique_id=1904394146]
 custom_minimum_size = Vector2(80, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -71,3 +77,6 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxTexture_wk0pr")
 text = "Controls"
+
+[connection signal="pressed" from="VBoxContainer/ButtonsMargin/Buttons/ButtonPlay" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonsMargin/Buttons/ButtonControls" to="." method="_on_controls_pressed"]

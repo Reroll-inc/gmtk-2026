@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ch3ugwgnt5l63"]
 
+[ext_resource type="Script" uid="uid://b4sicfe1gs56b" path="res://scripts/ui/game_over.gd" id="1_5eixk"]
 [ext_resource type="PackedScene" uid="uid://duw1edtt4lgev" path="res://ui/button_small.tscn" id="1_oo8kp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo8kp"]
@@ -12,13 +13,14 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="LevelComplete" type="Control" unique_id=507274711]
+[node name="GameOver" type="Control" unique_id=507274711]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5eixk")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=185059348]
 layout_mode = 1
@@ -78,7 +80,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Button2" type="Button" parent="VBoxContainer2/VBoxContainer2" unique_id=420674688]
+[node name="ToPlay" type="Button" parent="VBoxContainer2/VBoxContainer2" unique_id=420674688]
 custom_minimum_size = Vector2(112, 16)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -86,7 +88,7 @@ size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_oo8kp")
 text = "PLAY AGAIN"
 
-[node name="Button4" type="Button" parent="VBoxContainer2/VBoxContainer2" unique_id=1233809907]
+[node name="ToMenu" type="Button" parent="VBoxContainer2/VBoxContainer2" unique_id=1233809907]
 custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -94,3 +96,6 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_oo8kp")
 text = "Menu"
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer2/ToPlay" to="." method="_on_to_play_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer2/ToMenu" to="." method="_on_to_menu_pressed"]

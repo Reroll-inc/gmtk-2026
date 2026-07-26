@@ -15,6 +15,7 @@ var _skills: Array[Mechanic.Type] = [
 	Mechanic.Type.FLY,
 	Mechanic.Type.KILL,
 ]
+var _first_time: bool = true
 
 
 func _init() -> void:
@@ -25,9 +26,8 @@ func _init() -> void:
 	SignalBus.game_start.connect(_handle_game_start)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	game.pause()
+	game.stop()
 
 
 func _handle_enemy_kill(type: Enemy.Type) -> void:
@@ -55,7 +55,7 @@ func _handle_on_fail() -> void:
 		Mechanic.Type.KILL,
 	]
 
-	game.call_deferred("reload")
+	game.call_deferred("stop")
 
 
 func _handle_on_complete() -> void:
@@ -71,5 +71,8 @@ func _handle_on_complete() -> void:
 
 
 func _handle_game_start() -> void:
-	game.unpause()
-	game.show()
+	if _first_time:
+		_first_time = false
+		game.start()
+	else:
+		game.restart()

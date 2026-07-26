@@ -40,14 +40,20 @@ func _reset() -> void:
 		enemy.call_deferred("restore")
 
 
-# TODO
-func finish() -> void:
-	get_tree().paused = true
+func stop() -> void:
+	process_mode = PROCESS_MODE_DISABLED
 	hide()
 
 
-func reload() -> void:
+func start() -> void:
+	process_mode = PROCESS_MODE_INHERIT
+	show()
+
+
+func restart() -> void:
+	process_mode = PROCESS_MODE_INHERIT
 	get_tree().reload_current_scene()
+	show()
 
 
 # TODO

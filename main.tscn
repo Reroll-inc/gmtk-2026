@@ -11,8 +11,6 @@ points = Dictionary[int, int]({
 1: 200
 })
 
-[node name="Node" type="Node" parent="." unique_id=677465171]
-
 [node name="Game" parent="." unique_id=797240526 instance=ExtResource("1_ig7tw")]
 visible = false
 

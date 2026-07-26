@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="gmtk-2026"
+config/name="Heroless"
+config/description="A journey to become a human again"
 run/main_scene="uid://da8sgbng7wcgu"
 config/features=PackedStringArray("4.6")
 config/icon="res://assets/icon.svg"
