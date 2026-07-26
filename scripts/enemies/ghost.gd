@@ -22,7 +22,7 @@ func _ready() -> void:
 	audio_player.stream = sfx
 	audio_player.max_distance = sfx_distance_cutoff
 	audio_player.attenuation = sfx_attenuation
-	audio_player.play()
+	# audio_player.play()
 
 
 # This code should always expect the enemy to collide against the player.

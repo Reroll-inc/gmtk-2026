@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var main_menu: MainMenu = preload("res://ui/main_menu.tscn").instantiate()
 var control_menu: ControlMenu = preload("res://ui/controls.tscn").instantiate()
@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func _handle_game_start() -> void:
-	get_tree().root.call_deferred("remove_child", main_menu)
+	get_tree().root.remove_child(main_menu)
 
 
 func _handle_to_controls() -> void:

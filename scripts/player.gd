@@ -18,6 +18,7 @@ class_name Player
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_listener: AudioListener2D = $AudioListener2D
 @onready var camera: Camera2D = $Camera2D
+@onready var hud: CanvasLayer = $Hud
 
 @export var dmg_sound: AudioStream = preload("res://assets/sfx/powerdown07.mp3")
 @export var fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
@@ -135,11 +136,13 @@ func _play_fail_sound() -> void:
 
 func _handle_exit() -> void:
 	camera.enabled = false
+	hud.hide()
 
 
 func _handle_start() -> void:
 	hp = max_hp
 	camera.enabled = true
+	hud.show()
 
 
 func remove_mechanic(type: Mechanic.Type) -> void:

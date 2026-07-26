@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	_play_step(delta)
+	# _play_step(delta)
 
 	if (
 		is_on_wall()

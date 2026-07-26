@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cn02dbf02q4gf" path="res://scripts/mechanics/double_jump.gd" id="5_d631c"]
 [ext_resource type="Script" uid="uid://7fybflhvwvv8" path="res://scripts/mechanics/climb.gd" id="6_4fto2"]
 [ext_resource type="Script" uid="uid://b06enft8ehqro" path="res://scripts/mechanics/fly.gd" id="7_wkljg"]
+[ext_resource type="PackedScene" uid="uid://ba7c4cu2p6jsp" path="res://ui/hud.tscn" id="9_ry671"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vpi"]
 size = Vector2(14, 15)
@@ -57,5 +58,8 @@ script = ExtResource("6_4fto2")
 script = ExtResource("7_wkljg")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1566050294]
+
+[node name="Hud" parent="." unique_id=1152486364 instance=ExtResource("9_ry671")]
+visible = false
 
 [connection signal="timeout" from="Mechanics/Dash/Timer" to="Mechanics/Dash" method="_on_timer_timeout"]
