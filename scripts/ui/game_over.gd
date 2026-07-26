@@ -8,6 +8,7 @@ signal to_menu()
 
 func _init() -> void:
 	SignalBus.remove_mechanic.connect(_handle_remove_mechanic)
+	SignalBus.game_start.connect(_clean_up)
 
 
 func _ready() -> void:

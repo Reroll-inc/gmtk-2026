@@ -15,7 +15,6 @@ size = Vector2(13, 21)
 
 [node name="Game" type="Node2D" unique_id=797240526]
 script = ExtResource("1_4fuuu")
-disposed_skills = null
 
 [node name="CreditsBg" type="Sprite2D" parent="." unique_id=1838469859]
 position = Vector2(235, 553)
@@ -179,7 +178,7 @@ tile_set = ExtResource("1_vasa2")
 collision_enabled = false
 
 [node name="Start" type="Marker2D" parent="." unique_id=809326603]
-position = Vector2(1395, 51)
+position = Vector2(17, 246)
 gizmo_extents = 8.0
 
 [node name="Credits" type="Marker2D" parent="." unique_id=913085424]

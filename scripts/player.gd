@@ -53,7 +53,7 @@ func _ready() -> void:
 	SignalBus.game_failed.connect(pause)
 	SignalBus.level_completed.connect(pause)
 	SignalBus.game_start.connect(_handle_start)
-	SignalBus.to_next_level.connect(_handle_start)
+	SignalBus.to_next_level.connect(_handle_next_level)
 
 	for child: Node in mechanics.get_children():
 		if child is Mechanic:
@@ -63,7 +63,6 @@ func _ready() -> void:
 			_mechanics.append(m)
 
 	_switch_mechanic(_fallback())
-
 
 
 func set_anim(anim_name: String, facing: Vector2 = Vector2.ZERO) -> void:
@@ -78,11 +77,11 @@ func _exit_tree() -> void:
 	SignalBus.game_failed.disconnect(pause)
 	SignalBus.level_completed.disconnect(pause)
 	SignalBus.game_start.disconnect(_handle_start)
-	SignalBus.to_next_level.disconnect(_handle_start)
+	SignalBus.to_next_level.disconnect(_handle_next_level)
 
 
 func _fallback() -> Mechanic:
-	for m: Mechanic in _mechanics:
+	for m: Mechanic in mechanics.get_children():
 		if m.can_activate():
 			return m
 	return null
@@ -111,7 +110,7 @@ func _physics_process(delta: float) -> void:
 	# no mechanic is active, try to switch to one that can be activated
 	# or... maybe the current mechanic allows a break?
 	if _active == null or _active.is_interruptible():
-		for m: Mechanic in _mechanics:
+		for m: Mechanic in mechanics.get_children():
 			if m == _active:
 				continue
 			if m.can_activate() and (_active == null or _active.is_interruptible_by(m)):
@@ -169,6 +168,20 @@ func _handle_start() -> void:
 	camera.enabled = true
 	hud.show()
 
+	call_deferred("_reset_mechanics")
+
+
+func _handle_next_level() -> void:
+	hp = max_hp
+	camera.enabled = true
+	hud.show()
+
+
+func _reset_mechanics() -> void:
+	for m in _mechanics:
+		if m.get_parent() == null:
+			mechanics.add_child(m)
+
 
 func remove_mechanic(type: Mechanic.Type) -> void:
 	if type == Mechanic.Type.KILL:
@@ -189,8 +202,7 @@ func remove_mechanic(type: Mechanic.Type) -> void:
 	if m == _active:
 		_switch_mechanic(_fallback())
 
-	_mechanics.erase(m)
-	m.queue_free()
+	mechanics.remove_child(m)
 
 
 func read_input_direction() -> Vector2:

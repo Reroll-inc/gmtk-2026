@@ -24,7 +24,8 @@ func _ready() -> void:
 
 
 func _handle_game_start() -> void:
-	get_tree().root.remove_child(main_menu)
+	if main_menu.get_parent() != null:
+		get_tree().root.call_deferred("remove_child", main_menu)
 
 
 func _handle_game_to_main_menu() -> void:
