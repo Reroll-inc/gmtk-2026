@@ -8,17 +8,11 @@ enum State {}
 
 var _score: int = 0
 var _run_score: int = 0
-var _skills: Array[Mechanic.Type] = [
-	Mechanic.Type.CLIMB,
-	Mechanic.Type.DASH,
-	Mechanic.Type.DOUBLE_JUMP,
-	Mechanic.Type.FLY,
-	Mechanic.Type.KILL,
-]
 
 
 func _init() -> void:
 	SignalBus.level_completed.connect(_handle_on_complete)
+	SignalBus.to_next_level.connect(_handle_to_next_level)
 	SignalBus.game_failed.connect(_handle_on_fail)
 	SignalBus.enemy_killed.connect(_handle_enemy_kill)
 	SignalBus.player_receive_dmg.connect(_handle_player_dmg)
@@ -46,25 +40,16 @@ func _handle_player_dmg() -> void:
 func _handle_on_fail() -> void:
 	_score = 0
 	_run_score = 0
-	_skills = [
-		Mechanic.Type.CLIMB,
-		Mechanic.Type.DASH,
-		Mechanic.Type.DOUBLE_JUMP,
-		Mechanic.Type.FLY,
-		Mechanic.Type.KILL,
-	]
 
 	game.call_deferred("stop")
 
 
 func _handle_on_complete() -> void:
+	game.call_deferred("stop")
+
+
+func _handle_to_next_level() -> void:
 	_run_score = 0
-
-	var type: Mechanic.Type = _skills.pick_random()
-
-	_skills.remove_at(_skills.find(type))
-
-	SignalBus.remove_mechanic.emit(type)
 
 	game.start()
 

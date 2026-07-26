@@ -4,9 +4,7 @@ class_name Climb
 @export var climb_speed: float = 200.0
 @export var step_interval: float = 0.25
 var _step_timer: float = 0.0
-@export var climb_sound: AudioStream = preload(
-	"res://assets/sfx/poka02.mp3"
-)
+@export var climb_sound: AudioStream = preload("res://assets/sfx/poka02.mp3")
 
 
 func can_activate() -> bool:
@@ -36,6 +34,7 @@ func on_physics_process(_delta: float) -> bool:
 	player.velocity.y = dir.y * climb_speed
 
 	return true
+
 
 func _play_climb(delta: float) -> void:
 	_step_timer -= delta
