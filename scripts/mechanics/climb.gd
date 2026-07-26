@@ -30,6 +30,9 @@ func on_physics_process(_delta: float) -> bool:
 
 	if dir.y != 0.0:
 		_play_climb(_delta)
+		player.set_anim("climb_move")
+	else:
+		player.set_anim("climb_idle")
 
 	player.velocity.y = dir.y * climb_speed
 

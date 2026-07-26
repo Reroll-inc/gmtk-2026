@@ -23,9 +23,12 @@ func on_physics_process(delta: float) -> bool:
 		if Input.is_action_just_pressed("ui_up"):
 			player.velocity.y = player.jump_height
 			_play_jump()
+			player.set_anim("jump_start")
 		else:
 			_play_step(delta)
+			player.set_anim("run" if absf(player.velocity.x) > 10.0 else "idle")
 	elif player.velocity.y < 0.0:
+		player.set_anim("fall")
 		if Input.is_action_just_released("ui_up"):
 			player.velocity.y *= player.jump_hold
 		elif Input.is_action_pressed("ui_down"):
