@@ -46,6 +46,27 @@ offset_right = 423.0
 offset_bottom = 758.0
 texture = ExtResource("4_y36n6")
 
+[node name="Label" type="Label" parent="TileMapLayers/Credits" unique_id=91594750]
+offset_top = 510.0
+offset_right = 478.0
+offset_bottom = 526.0
+text = "Heroless"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="TileMapLayers/Credits" unique_id=1400235864]
+offset_top = 550.0
+offset_right = 478.0
+offset_bottom = 717.0
+theme_override_font_sizes/font_size = 12
+text = "Made for GMTK Jam 2026
+
+Vanesa Reche
+Luciano Graziani
+Matias Ricarte
+
+Thanks for playing!"
+horizontal_alignment = 1
+
 [node name="FinishLine" type="Area2D" parent="TileMapLayers/Credits" unique_id=1200379380]
 collision_layer = 0
 
