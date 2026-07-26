@@ -17,6 +17,13 @@ class_name Player
 @onready var mechanics: Node = $Mechanics
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+@export var dmg_sound: AudioStream = preload(
+	"res://assets/sfx/powerdown07.mp3"
+)
+@export var fail_sound: AudioStream = preload(
+	"res://assets/sfx/division_of_ninja.mp3"
+)
+
 var _mechanics: Array[Mechanic] = []
 var _active: Mechanic = null
 
@@ -95,10 +102,25 @@ func _handle_dmg() -> void:
 	hp -= 1
 
 	if hp == 0:
+		_play_fail_sound()
 		SignalBus.game_failed.emit()
 	else:
+		_play_dmg_sound()
 		SignalBus.player_receive_dmg.emit()
 
+func _play_dmg_sound() -> void:
+	if audio_player.playing:
+		audio_player.stop()
+	audio_player.stream = dmg_sound
+	audio_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_player.play()
+
+func _play_fail_sound() -> void:
+	if audio_player.playing:
+		audio_player.stop()
+	audio_player.stream = fail_sound
+	audio_player.pitch_scale = 1.0
+	audio_player.play()
 
 func remove_mechanic(type: Mechanic.Type) -> void:
 	if type == Mechanic.Type.KILL:

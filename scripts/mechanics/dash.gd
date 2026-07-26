@@ -5,6 +5,10 @@ class_name Dash
 @export var dash_duration: float = 0.18
 @export var dash_cooldown: float = 0.4
 
+@export var dash_sound: AudioStream = preload(
+	"res://assets/sfx/powerup03.mp3"
+)
+
 var _time_left: float = 0.0
 var _cooling_down: bool = false
 var _dir: Vector2 = Vector2.ZERO
@@ -35,7 +39,15 @@ func on_enter() -> void:
 func on_physics_process(delta: float) -> bool:
 	_time_left -= delta
 	player.velocity = _dir * dash_speed
+	_play_dash()
 	return _time_left > 0.0 # we dash until the time is up
+
+func _play_dash() -> void:
+	if player.audio_player.playing:
+		player.audio_player.stop()
+	player.audio_player.stream = dash_sound
+	player.audio_player.pitch_scale = randf_range(0.9, 1.1)
+	player.audio_player.play()
 
 
 func _on_timer_timeout() -> void:

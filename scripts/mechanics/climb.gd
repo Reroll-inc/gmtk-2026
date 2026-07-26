@@ -2,6 +2,11 @@ extends Mechanic
 class_name Climb
 
 @export var climb_speed: float = 200.0
+@export var step_interval: float = 0.25
+var _step_timer: float = 0.0
+@export var climb_sound: AudioStream = preload(
+	"res://assets/sfx/poka02.mp3"
+)
 
 
 func can_activate() -> bool:
@@ -25,6 +30,18 @@ func on_physics_process(_delta: float) -> bool:
 
 	var dir: Vector2 = player.read_input_direction()
 
+	if dir.y != 0.0:
+		_play_climb(_delta)
+
 	player.velocity.y = dir.y * climb_speed
 
 	return true
+
+func _play_climb(delta: float) -> void:
+	_step_timer -= delta
+	if _step_timer > 0.0 or absf(player.velocity.y) < 10.0:
+		return
+	_step_timer = step_interval
+	player.audio_player.stream = climb_sound
+	player.audio_player.pitch_scale = randf_range(0.7, 0.8)
+	player.audio_player.play()
