@@ -3,12 +3,17 @@
 [ext_resource type="Script" uid="uid://bq1s3dso36sqx" path="res://scripts/game.gd" id="1_4fuuu"]
 [ext_resource type="TileSet" uid="uid://q274ar0j0lt0" path="res://sprites/tiles/tileset_16x16.tres" id="1_vasa2"]
 [ext_resource type="Script" uid="uid://c88403jwedf2o" path="res://scripts/integrations.gd" id="2_h7iqs"]
+[ext_resource type="Texture2D" uid="uid://ddwrt77n5j3xb" path="res://bg.png" id="2_u5opy"]
 [ext_resource type="PackedScene" uid="uid://d27erohljh1tt" path="res://game/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://dsg38b2sivjds" path="res://game/enemies/slime.tscn" id="4_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://diipvyyhr11d0" path="res://game/enemies/ghost.tscn" id="5_dakft"]
 
 [node name="Game" type="Node2D" unique_id=797240526]
 script = ExtResource("1_4fuuu")
+
+[node name="bg" type="Sprite2D" parent="." unique_id=302051818]
+position = Vector2(687, 23)
+texture = ExtResource("2_u5opy")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=1814644897]
 
