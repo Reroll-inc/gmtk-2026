@@ -27,12 +27,15 @@ func on_physics_process(_delta: float) -> bool:
 		return false
 
 	var dir: Vector2 = player.read_input_direction()
+	# +1 = wall on the right, -1 = on the left
+	var wall_dir: float = -player.get_wall_normal().x
+	var facing = Vector2(wall_dir, 0.0)
 
 	if dir.y != 0.0:
 		_play_climb(_delta)
-		player.set_anim("climb_move")
+		player.set_anim("climb_move", facing)
 	else:
-		player.set_anim("climb_idle")
+		player.set_anim("climb_idle", facing)
 
 	player.velocity.y = dir.y * climb_speed
 

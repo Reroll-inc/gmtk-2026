@@ -65,10 +65,11 @@ func _ready() -> void:
 	_switch_mechanic(_fallback())
 
 
-func set_anim(anim_name: String) -> void:
+
+func set_anim(anim_name: String, facing: Vector2 = Vector2.ZERO) -> void:
 	if anim.animation != anim_name:
 		anim.play(anim_name)
-	anim.flip_h = last_facing.x < 0.0
+	anim.flip_h = last_facing.x < 0.0 if facing == Vector2.ZERO else facing.x < 0.0
 
 
 func _exit_tree() -> void:
