@@ -15,6 +15,7 @@ class_name Player
 @export var max_hp: int = 3
 
 @onready var mechanics: Node = $Mechanics
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var _mechanics: Array[Mechanic] = []
 var _active: Mechanic = null

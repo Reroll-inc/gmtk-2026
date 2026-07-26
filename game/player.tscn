@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0xop8ps6fxhj" path="res://assets/icon.svg" id="2_du4nq"]
 [ext_resource type="Script" uid="uid://cv1iuyj768s11" path="res://scripts/mechanics/movement.gd" id="3_p0vpi"]
 [ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://scripts/mechanics/dash.gd" id="4_d631c"]
+[ext_resource type="AudioStream" uid="uid://bior8efwhhdoc" path="res://assets/sfx/step.ogg" id="4_iyaem"]
 [ext_resource type="Script" uid="uid://cn02dbf02q4gf" path="res://scripts/mechanics/double_jump.gd" id="5_d631c"]
 [ext_resource type="Script" uid="uid://7fybflhvwvv8" path="res://scripts/mechanics/climb.gd" id="6_4fto2"]
 [ext_resource type="Script" uid="uid://b06enft8ehqro" path="res://scripts/mechanics/fly.gd" id="7_wkljg"]
@@ -28,6 +29,8 @@ editor_draw_limits = true
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_du4nq")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1230301999]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1821165433]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_p0vpi")
@@ -36,6 +39,7 @@ shape = SubResource("RectangleShape2D_p0vpi")
 
 [node name="Base" type="Node" parent="Mechanics" unique_id=1872219932]
 script = ExtResource("3_p0vpi")
+footstep_sound = ExtResource("4_iyaem")
 
 [node name="Dash" type="Node" parent="Mechanics" unique_id=462262863]
 script = ExtResource("4_d631c")

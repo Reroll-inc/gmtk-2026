@@ -1,6 +1,15 @@
 extends Mechanic
 class_name BaseMovement
 
+@export var step_interval: float = 0.3
+var _step_timer: float = 0.0
+@export var footstep_sound: AudioStream = preload(
+	"res://assets/sfx/putting_shoes.mp3"
+)
+@export var jump_sound: AudioStream = preload(
+	"res://assets/sfx/jump12.mp3"
+)
+
 func is_interruptible() -> bool:
 	return true
 
@@ -24,6 +33,9 @@ func on_physics_process(delta: float) -> bool:
 	if player.is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
 			player.velocity.y = player.jump_height
+			_play_jump()
+		else:
+			_play_step(delta)
 	elif player.velocity.y < 0.0:
 		if Input.is_action_just_released("ui_up"):
 			player.velocity.y *= player.jump_hold
@@ -31,5 +43,21 @@ func on_physics_process(delta: float) -> bool:
 			player.velocity.y += player.fast_fall_gravity * delta
 
 	player.velocity.y += player.gravity
-	
+
 	return true
+
+func _play_step(delta: float) -> void:
+	_step_timer -= delta
+	if _step_timer > 0.0 or absf(player.velocity.x) < 10.0:
+		return
+	_step_timer = step_interval
+	player.audio_player.stream = footstep_sound
+	player.audio_player.pitch_scale = randf_range(0.7, 1.3)
+	player.audio_player.play()
+
+func _play_jump() -> void:
+	if player.audio_player.playing:
+		player.audio_player.stop()
+	player.audio_player.stream = jump_sound
+	player.audio_player.pitch_scale = randf_range(0.9, 1.1)
+	player.audio_player.play()
