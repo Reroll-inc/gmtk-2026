@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cmv2chba54lhs"]
+
+[ext_resource type="Texture2D" path="res://ui/hud_icon_1.tres" id="1_qaump"]
+[ext_resource type="Script" path="res://scripts/ui/hud_icon.gd" id="2_aiabc"]
+[ext_resource type="Texture2D" uid="uid://bqrlykx6fwsqi" path="res://ui/assets/icons_16x16/icon_r07_c5.png" id="2_qaump"]
+
+[node name="HudIcon" type="TextureRect" unique_id=883308966]
+texture = ExtResource("1_qaump")
+expand_mode = 2
+script = ExtResource("2_aiabc")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=596127498]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 27.0
+offset_bottom = 26.0
+texture = ExtResource("2_qaump")
+expand_mode = 1
+stretch_mode = 5

@@ -5,6 +5,7 @@ class_name Hud
 
 @onready var hp: HBoxContainer = $HP
 @onready var _score_text: Label = $Score
+@onready var _progress: Array[Node] = $LevelProgress.get_children()
 
 var _current_hp: int = 3
 var hp_1_texture: CompressedTexture2D = preload("res://sprites/hp_1.tres")
@@ -16,6 +17,8 @@ func _init() -> void:
 	SignalBus.to_next_level.connect(_on_reset)
 	SignalBus.game_failed.connect(_on_reset)
 	SignalBus.score_update.connect(_on_score_update)
+	SignalBus.remove_mechanic.connect(_handle_remove_mechanic)
+	SignalBus.game_start.connect(_clear_state)
 
 
 func _ready() -> void:
@@ -50,3 +53,15 @@ func _redraw_hp() -> void:
 
 func _on_score_update(value: int) -> void:
 	_score_text.text = var_to_str(value)
+
+
+func _handle_remove_mechanic(type: Mechanic.Type) -> void:
+	for mechanic: HudIcon in _progress:
+		if mechanic.type == type:
+			mechanic.call_deferred("complete")
+			break
+
+
+func _clear_state() -> void:
+	for mechanic: HudIcon in _progress:
+		mechanic.clear()
