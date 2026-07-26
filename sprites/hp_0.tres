@@ -1,7 +1,4 @@
-[gd_resource type="AtlasTexture" format=3 uid="uid://dm34q4jdeamkn"]
-
-[ext_resource type="Texture2D" uid="uid://b6kr8edkpn3or" path="res://sprites/tiles/tileset_16x16.png" id="1_cdc7f"]
+[gd_resource type="CompressedTexture2D" format=3 uid="uid://dm34q4jdeamkn"]
 
 [resource]
-atlas = ExtResource("1_cdc7f")
-region = Rect2(50.21521, 91.069466, 10.700394, 10.999626)
+load_path = "res://.godot/imported/icon_life_lost.png-513f6d7ce869bcde67668eb12e7430d8.ctex"

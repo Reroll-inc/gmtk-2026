@@ -6,8 +6,8 @@ class_name Hud
 @onready var hp: HBoxContainer = $HP
 
 var _current_hp: int = 3
-var hp_1_texture: AtlasTexture = preload("res://sprites/hp_1.tres")
-var hp_0_texture: AtlasTexture = preload("res://sprites/hp_0.tres")
+var hp_1_texture: CompressedTexture2D = preload("res://sprites/hp_1.tres")
+var hp_0_texture: CompressedTexture2D = preload("res://sprites/hp_0.tres")
 
 
 func _init() -> void:
