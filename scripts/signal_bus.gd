@@ -19,6 +19,9 @@ signal remove_mechanic(type: Mechanic.Type)
 signal level_completed()
 
 @warning_ignore("unused_signal")
+signal to_next_level()
+
+@warning_ignore("unused_signal")
 signal game_failed()
 
 @warning_ignore("unused_signal")

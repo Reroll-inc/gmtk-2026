@@ -37,7 +37,9 @@ func _ready() -> void:
 	SignalBus.remove_mechanic.connect(remove_mechanic)
 	SignalBus.player_got_spike.connect(_handle_dmg)
 	SignalBus.game_failed.connect(_handle_exit)
+	SignalBus.level_completed.connect(_handle_exit)
 	SignalBus.game_start.connect(_handle_start)
+	SignalBus.to_next_level.connect(_handle_start)
 
 	for child: Node in mechanics.get_children():
 		if child is Mechanic:
@@ -53,6 +55,9 @@ func _exit_tree() -> void:
 	SignalBus.remove_mechanic.disconnect(remove_mechanic)
 	SignalBus.player_got_spike.disconnect(_handle_dmg)
 	SignalBus.game_failed.disconnect(_handle_exit)
+	SignalBus.level_completed.disconnect(_handle_exit)
+	SignalBus.game_start.disconnect(_handle_start)
+	SignalBus.to_next_level.disconnect(_handle_start)
 
 
 func _fallback() -> Mechanic:
