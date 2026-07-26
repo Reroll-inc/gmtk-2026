@@ -20,3 +20,6 @@ signal level_completed()
 
 @warning_ignore("unused_signal")
 signal game_failed()
+
+@warning_ignore("unused_signal")
+signal game_start()
