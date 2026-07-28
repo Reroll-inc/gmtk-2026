@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ddtv1kkv1r8vl"]
 
 [ext_resource type="Script" uid="uid://3qthctx8s7l6" path="res://scripts/ui/gui.gd" id="1_3f2kh"]
+[ext_resource type="PackedScene" uid="uid://ba7c4cu2p6jsp" path="res://ui/hud.tscn" id="2_xlv5r"]
 
 [node name="GUI" type="CanvasLayer" unique_id=198715739]
 script = ExtResource("1_3f2kh")
+
+[node name="Hud" parent="." unique_id=356118809 instance=ExtResource("2_xlv5r")]

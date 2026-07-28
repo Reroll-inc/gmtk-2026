@@ -27,7 +27,6 @@ enum Position {
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_listener: AudioListener2D = $AudioListener2D
 @onready var camera: Camera2D = $Camera2D
-@onready var hud: CanvasLayer = $Hud
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _camera_limit: Vector2i = Vector2i(camera.limit_right, camera.limit_bottom)
 
@@ -69,15 +68,6 @@ func set_anim(anim_name: String, facing: Vector2 = Vector2.ZERO) -> void:
 	if anim.animation != anim_name:
 		anim.play(anim_name)
 	anim.flip_h = last_facing.x < 0.0 if facing == Vector2.ZERO else facing.x < 0.0
-
-
-func _exit_tree() -> void:
-	SignalBus.remove_mechanic.disconnect(remove_mechanic)
-	SignalBus.player_got_spike.disconnect(_handle_dmg)
-	SignalBus.game_failed.disconnect(pause)
-	SignalBus.level_completed.disconnect(pause)
-	SignalBus.game_start.disconnect(_handle_start)
-	SignalBus.to_next_level.disconnect(_handle_next_level)
 
 
 func _fallback() -> Mechanic:
@@ -154,27 +144,21 @@ func _play_fail_sound() -> void:
 
 
 func pause() -> void:
-	camera.enabled = false
-	hud.hide()
+	pass
 
 
 func unpause() -> void:
-	camera.enabled = true
-	hud.show()
+	pass
 
 
 func _handle_start() -> void:
 	hp = max_hp
-	camera.enabled = true
-	hud.show()
 
 	call_deferred("_reset_mechanics")
 
 
 func _handle_next_level() -> void:
 	hp = max_hp
-	camera.enabled = true
-	hud.show()
 
 
 func _reset_mechanics() -> void:
@@ -242,7 +226,6 @@ func reset(type: Position, marker: Marker2D) -> void:
 	velocity = Vector2.ZERO
 
 	if type == Position.CREDITS:
-		camera.enabled = true
 		camera.limit_left = _credits_limit.top.x
 		camera.limit_top = _credits_limit.top.y
 		camera.limit_right = _credits_limit.bottom.x

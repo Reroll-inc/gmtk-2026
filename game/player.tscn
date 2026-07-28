@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://7fybflhvwvv8" path="res://scripts/mechanics/climb.gd" id="6_4fto2"]
 [ext_resource type="Script" uid="uid://b06enft8ehqro" path="res://scripts/mechanics/fly.gd" id="7_wkljg"]
 [ext_resource type="Texture2D" uid="uid://ccykbax576m70" path="res://sprites/char-sprite.png" id="9_7fxs2"]
-[ext_resource type="PackedScene" uid="uid://ba7c4cu2p6jsp" path="res://ui/hud.tscn" id="9_ry671"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vpi"]
 size = Vector2(14, 15)
@@ -185,10 +184,6 @@ script = ExtResource("6_4fto2")
 script = ExtResource("7_wkljg")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1566050294]
-
-[node name="Hud" parent="." unique_id=1152486364 instance=ExtResource("9_ry671")]
-visible = false
-max_hp = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215572276]
 sprite_frames = SubResource("SpriteFrames_sghav")

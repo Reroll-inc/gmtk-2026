@@ -1,10 +1,10 @@
-extends CanvasLayer
+extends Node
 class_name Hud
 
 @export var max_hp: int = 3
 
 @onready var hp: HBoxContainer = $HP
-@onready var _score_text: Label = $Score
+@onready var _score: Label = $Score
 @onready var _progress: Array[Node] = $LevelProgress.get_children()
 
 var _current_hp: int = 3
@@ -23,13 +23,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	_redraw_hp()
-
-
-func _exit_tree() -> void:
-	SignalBus.player_receive_dmg.disconnect(_on_player_dmg)
-	SignalBus.to_next_level.disconnect(_on_reset)
-	SignalBus.game_failed.disconnect(_on_reset)
-	SignalBus.score_update.disconnect(_on_score_update)
 
 
 func _on_player_dmg() -> void:
@@ -52,7 +45,7 @@ func _redraw_hp() -> void:
 
 
 func _on_score_update(value: int) -> void:
-	_score_text.text = var_to_str(value)
+	_score.text = var_to_str(value)
 
 
 func _handle_remove_mechanic(type: Mechanic.Type) -> void:
@@ -63,5 +56,7 @@ func _handle_remove_mechanic(type: Mechanic.Type) -> void:
 
 
 func _clear_state() -> void:
+	_score.text = "0"
+
 	for mechanic: HudIcon in _progress:
 		mechanic.clear()

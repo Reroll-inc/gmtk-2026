@@ -11,8 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c6e0okmvc5ein" path="res://ui/assets/icons_16x16/icon_r07_c6.png" id="12_so1yu"]
 [ext_resource type="Texture2D" uid="uid://b7v7n5gdtulav" path="res://ui/assets/icons_16x16/icon_r09_c1.png" id="13_so1yu"]
 
-[node name="Hud" type="CanvasLayer" unique_id=1467298372]
-layer = 2
+[node name="Hud" type="Node" unique_id=284350410]
 script = ExtResource("1_546lt")
 
 [node name="HP" type="HBoxContainer" parent="." unique_id=642554191]

@@ -20,45 +20,48 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	get_tree().root.call_deferred("add_child", main_menu)
+	add_child(main_menu)
 
 
 func _handle_game_start() -> void:
 	if main_menu.get_parent() != null:
-		get_tree().root.call_deferred("remove_child", main_menu)
+		remove_child(main_menu)
+	if game_over.get_parent() != null:
+		remove_child(game_over)
 
 
 func _handle_game_to_main_menu() -> void:
-	get_tree().root.add_child(main_menu)
+	add_child(main_menu)
 
 
 func _handle_to_controls() -> void:
-	get_tree().root.remove_child(main_menu)
-	get_tree().root.add_child(control_menu)
+	remove_child(main_menu)
+	add_child(control_menu)
 
 
 func _handle_controls_to_main_menu() -> void:
-	get_tree().root.remove_child(control_menu)
-	get_tree().root.add_child(main_menu)
+	remove_child(control_menu)
+	add_child(main_menu)
 
 
 func _handle_on_fail() -> void:
-	get_tree().root.add_child(game_over)
+	add_child(game_over)
 
 
 func _handle_game_over_to_main_menu() -> void:
-	get_tree().root.remove_child(game_over)
-	get_tree().root.add_child(main_menu)
+	remove_child(game_over)
+	add_child(main_menu)
 
 
 func _handle_level_completed() -> void:
-	get_tree().root.add_child(level_complete)
+	add_child(level_complete)
+
 	level_complete.shuffle()
 
 
 func _handle_to_next_level() -> void:
-	get_tree().root.remove_child(level_complete)
+	remove_child(level_complete)
 
 
 func _handle_credits() -> void:
-	get_tree().root.remove_child(level_complete)
+	remove_child(level_complete)
