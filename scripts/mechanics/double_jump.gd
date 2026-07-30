@@ -9,7 +9,7 @@ var _jumps_used: int = 0
 
 func can_activate() -> bool:
 	if (
-		not player.is_on_floor() and Input.is_action_just_pressed("ui_up")
+		not player.is_on_floor() and Input.is_action_just_pressed("move_forward")
 		and _jumps_used < max_jumps
 	):
 		return true

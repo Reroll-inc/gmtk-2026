@@ -190,10 +190,7 @@ func remove_mechanic(type: Mechanic.Type) -> void:
 
 
 func read_input_direction() -> Vector2:
-	var hor: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	var ver: float = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
-	return Vector2(hor, ver).normalized()
+	return Input.get_vector("move_left", "move_right", "move_forward", "move_back").normalized()
 
 
 func is_falling() -> bool:

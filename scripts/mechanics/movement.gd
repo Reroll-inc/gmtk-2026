@@ -13,14 +13,16 @@ func is_interruptible() -> bool:
 
 # base movement is always active
 func on_physics_process(delta: float) -> bool:
-	var hor: float = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
+	var hor: float = Input.get_action_strength("move_right") - Input.get_action_strength(
+		"move_left"
+	)
 	var acc: float = (player.acceleration if player.is_on_floor() else player.air_acceleration)
 	var velocity_weight: float = delta * (acc if hor else player.friction)
 
 	player.velocity.x = lerp(player.velocity.x, hor * player.max_speed, velocity_weight)
 
 	if player.is_on_floor():
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_just_pressed("move_forward"):
 			player.velocity.y = player.jump_height
 			_play_jump()
 			player.set_anim("jump_start")
@@ -29,9 +31,9 @@ func on_physics_process(delta: float) -> bool:
 			player.set_anim("run" if absf(player.velocity.x) > 10.0 else "idle")
 	elif player.velocity.y < 0.0:
 		player.set_anim("fall")
-		if Input.is_action_just_released("ui_up"):
+		if Input.is_action_just_released("move_forward"):
 			player.velocity.y *= player.jump_hold
-		elif Input.is_action_pressed("ui_down"):
+		elif Input.is_action_pressed("move_back"):
 			player.velocity.y += player.fast_fall_gravity * delta
 
 	player.velocity.y += player.gravity
