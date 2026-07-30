@@ -60,6 +60,7 @@ func _on_hitbox_body_entered(player: Player) -> void:
 
 
 func kill() -> void:
+	stop()
 	hide()
 
 	_collision.disabled = true
@@ -70,8 +71,17 @@ func kill() -> void:
 
 func restore() -> void:
 	show()
+	start()
 
 	_collision.disabled = false
 	_hitbox_collision.disabled = false
 
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func stop() -> void:
+	_audio_player.stop()
+
+
+func start() -> void:
+	_audio_player.play()

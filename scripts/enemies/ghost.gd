@@ -57,6 +57,7 @@ func _add_sleep(anim: Animation) -> void:
 
 
 func kill() -> void:
+	stop()
 	hide()
 
 	_hitbox_collision.disabled = true
@@ -65,7 +66,18 @@ func kill() -> void:
 
 
 func restore() -> void:
+	start()
 	show()
 
 	_hitbox_collision.disabled = false
-	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func stop() -> void:
+	_animator.stop()
+	_audio_player.stop()
+
+func start() -> void:
+	_animator.play()
+	_audio_player.play()

@@ -19,7 +19,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	_stop()
-	_player.pause()
 
 
 func _handle_player_receive_dmg() -> void:
@@ -34,16 +33,22 @@ func _reset() -> void:
 
 
 func _stop() -> void:
-	process_mode = PROCESS_MODE_DISABLED
-	_player.pause()
+	for enemy: Node in _enemies:
+		enemy.call("stop")
+
+	process_mode = Node.PROCESS_MODE_DISABLED
+	get_tree().paused = true
 	hide()
 
 
 func _handle_game_start() -> void:
 	_reset()
-	_player.unpause()
 	show()
-	process_mode = PROCESS_MODE_INHERIT
+
+	get_tree().paused = false
+	# We skip till the end of the current frame so everything
+	# can be set before physics start running
+	set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 
 
 func _handle_game_complete() -> void:
@@ -54,14 +59,18 @@ func _handle_game_complete() -> void:
 	_credits_area.disabled = false
 	show()
 
-	process_mode = PROCESS_MODE_INHERIT
+	get_tree().paused = false
+	# We skip till the end of the current frame so everything
+	# can be set before physics start running
+	set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 
 
-func _on_finish_line_body_entered(_body: Node2D) -> void:
-	_credits_area.set_deferred("disabled", true)
-	call_deferred("_stop")
+func _on_finish_line_body_entered(body: Node2D) -> void:
+	if body is Player:
+		_credits_area.set_deferred("disabled", true)
+		call_deferred("_stop")
 
-	SignalBus.to_main_menu.emit()
+		SignalBus.to_main_menu.emit()
 
 
 func _handle_game_failed() -> void:
