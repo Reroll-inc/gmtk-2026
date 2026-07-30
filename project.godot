@@ -21,6 +21,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 SignalBus="*uid://b8d2v4tciy2kr"
+SignalLens="*uid://85rkx60vm7a7"
 
 [debug]
 
@@ -35,6 +36,10 @@ window/size/viewport_height=272
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/signal_lens/plugin.cfg")
 
 [gui]
 
