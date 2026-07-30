@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://coyqxvgw737rb" path="res://ui/level_complete.tscn" id="6_juqqw"]
 
 [node name="GUI" type="CanvasLayer" unique_id=198715739]
+process_mode = 3
 script = ExtResource("1_3f2kh")
 
 [node name="Hud" parent="." unique_id=356118809 instance=ExtResource("2_xlv5r")]

@@ -12,7 +12,7 @@ size = Vector2(8, 12)
 
 [node name="Slime" type="CharacterBody2D" unique_id=440585589]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_0fifv")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1299446919]
@@ -32,7 +32,6 @@ shape = SubResource("RectangleShape2D_0fifv")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1310240386]
 collision_layer = 0
-collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=698806631]
 position = Vector2(0, 2)
@@ -41,9 +40,11 @@ shape = SubResource("RectangleShape2D_8rqhx")
 [node name="LeftFloorCheck" type="RayCast2D" parent="." unique_id=320056957]
 position = Vector2(-8, 5)
 target_position = Vector2(0, 10)
+collision_mask = 4
 
 [node name="RightFloorCheck" type="RayCast2D" parent="." unique_id=980566621]
 position = Vector2(8, 5)
 target_position = Vector2(0, 10)
+collision_mask = 4
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

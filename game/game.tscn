@@ -15,7 +15,6 @@ size = Vector2(13, 21)
 
 [node name="Game" type="Node2D" unique_id=797240526]
 script = ExtResource("1_4fuuu")
-disposed_skills = Array[int]([3])
 
 [node name="CreditsBg" type="Sprite2D" parent="." unique_id=1838469859]
 position = Vector2(235, 553)
@@ -68,10 +67,10 @@ Thanks for playing!"
 horizontal_alignment = 1
 
 [node name="FinishLine" type="Area2D" parent="TileMapLayers/Credits" unique_id=1200379380]
+position = Vector2(400.5, 741.5)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayers/Credits/FinishLine" unique_id=1740765624]
-position = Vector2(400.5, 741.5)
 shape = SubResource("RectangleShape2D_y36n6")
 
 [node name="Frontground" type="TileMapLayer" parent="TileMapLayers" unique_id=1839555714]
