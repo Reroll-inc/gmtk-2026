@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://ccls4dxnw01nj" path="res://ui/assets/icons_16x16/icon_r09_c4.png" id="1_bn2pc"]
 [ext_resource type="Script" uid="uid://778gxi6vqkck" path="res://scripts/ui/mechanic_preview.gd" id="1_j0wy8"]
 
-[sub_resource type="Theme" id="Theme_thgns"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62fq3"]
 bg_color = Color(0.4117647, 0.25882354, 0.19215687, 1)
 
@@ -16,9 +14,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_thgns")
+mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_62fq3")
-button_mask = 0
 script = ExtResource("1_j0wy8")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=170514293]

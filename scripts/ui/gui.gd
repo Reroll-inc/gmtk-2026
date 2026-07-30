@@ -5,6 +5,8 @@ var control_menu: ControlMenu = preload("res://ui/controls.tscn").instantiate()
 var game_over: GameOver = preload("res://ui/game_over.tscn").instantiate()
 var level_complete: LevelComplete = preload("res://ui/level_complete.tscn").instantiate()
 
+@onready var hud: Hud = $Hud
+
 
 func _init() -> void:
 	SignalBus.game_start.connect(_handle_game_start)
@@ -24,6 +26,8 @@ func _ready() -> void:
 
 
 func _handle_game_start() -> void:
+	hud.show()
+
 	if main_menu.get_parent() != null:
 		remove_child(main_menu)
 	if game_over.get_parent() != null:
@@ -64,4 +68,6 @@ func _handle_to_next_level() -> void:
 
 
 func _handle_credits() -> void:
+	hud.hide()
+
 	remove_child(level_complete)

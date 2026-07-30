@@ -11,10 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://c6e0okmvc5ein" path="res://ui/assets/icons_16x16/icon_r07_c6.png" id="12_so1yu"]
 [ext_resource type="Texture2D" uid="uid://b7v7n5gdtulav" path="res://ui/assets/icons_16x16/icon_r09_c1.png" id="13_so1yu"]
 
-[node name="Hud" type="Node" unique_id=284350410]
+[node name="Hud" type="Control" unique_id=1675618163]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_546lt")
 
 [node name="HP" type="HBoxContainer" parent="." unique_id=642554191]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.005
 anchor_top = 0.005
@@ -39,6 +46,7 @@ layout_mode = 2
 texture = ExtResource("4_en2x2")
 
 [node name="LevelProgress" type="HBoxContainer" parent="." unique_id=1775523720]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.628
 anchor_top = 0.005
@@ -74,6 +82,7 @@ type = 4
 image = ExtResource("13_so1yu")
 
 [node name="Score" type="Label" parent="." unique_id=1795214251]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.04

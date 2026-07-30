@@ -1,4 +1,4 @@
-extends Node
+extends Control
 class_name Hud
 
 @export var max_hp: int = 3
