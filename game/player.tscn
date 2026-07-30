@@ -184,6 +184,7 @@ script = ExtResource("6_4fto2")
 script = ExtResource("7_wkljg")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1566050294]
+current = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215572276]
 sprite_frames = SubResource("SpriteFrames_sghav")

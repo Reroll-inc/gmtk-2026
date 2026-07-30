@@ -4,14 +4,11 @@ class_name Ghost
 @export var speed: float = 1.0
 @export var vertical: bool = true
 @export var distance: float = -120.0
+@export var sleep_time: float
 
 @onready var _animator: AnimationPlayer = $AnimationPlayer
 @onready var _hitbox_collision: CollisionShape2D = $Sprite/Hitbox/CollisionShape2D
-
-@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@export var sfx: AudioStream = preload("res://assets/sfx/ghost_loop.ogg")
-@export var sfx_distance_cutoff: float = 200.0
-@export var sfx_attenuation: float = 2.0
+@onready var _audio_player: AudioStreamPlayer2D = $Sprite/AudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -19,10 +16,7 @@ func _ready() -> void:
 
 	_animator.play("ghost/fly-v" if vertical else "ghost/fly-h", -1, speed)
 
-	audio_player.stream = sfx
-	audio_player.max_distance = sfx_distance_cutoff
-	audio_player.attenuation = sfx_attenuation
-	# audio_player.play()
+	_audio_player.pitch_scale = randf_range(0.9, 1.1)
 
 
 # This code should always expect the enemy to collide against the player.
@@ -44,11 +38,22 @@ func _preset_animation() -> void:
 
 	anim.track_set_key_value(0, 1, value)
 
+	if sleep_time > 0:
+		_add_sleep(anim)
+
 	lib.remove_animation("fly-v" if vertical else "fly-h")
 	lib.add_animation("fly-v" if vertical else "fly-h", anim)
 
 	_animator.remove_animation_library("ghost")
 	_animator.add_animation_library("ghost", lib)
+
+
+func _add_sleep(anim: Animation) -> void:
+	var keys: int = anim.track_get_key_count(0)
+	var time: float = anim.track_get_key_time(0, keys - 1)
+	anim.track_insert_key(0, time + sleep_time, Vector2(0, 0))
+
+	anim.length += sleep_time
 
 
 func kill() -> void:

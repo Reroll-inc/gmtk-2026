@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b307lq6khu7v2" path="res://scripts/enemies/slime.gd" id="1_0fifv"]
 [ext_resource type="SpriteFrames" uid="uid://dql86gah014b3" path="res://sprites/tiles/enemy_frames.tres" id="1_s4oog"]
+[ext_resource type="AudioStream" uid="uid://b56mqnp87dyam" path="res://assets/sfx/dumping.mp3" id="3_pxs54"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0fifv"]
 size = Vector2(12, 12)
@@ -20,8 +21,10 @@ animation = &"slime"
 autoplay = "slime"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=431243022]
+stream = ExtResource("3_pxs54")
 volume_db = 7.776
-attenuation = 1.5691688
+max_distance = 160.0
+attenuation = 1.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=729378900]
 position = Vector2(0, 2)

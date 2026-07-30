@@ -89,9 +89,6 @@ player = NodePath("../Player")
 [node name="Slime1" parent="TileMapLayers/TheThing/Integrations" unique_id=2092001455 instance=ExtResource("4_dxrkv")]
 position = Vector2(290, 117)
 
-[node name="Slime2" parent="TileMapLayers/TheThing/Integrations" unique_id=316991637 instance=ExtResource("4_dxrkv")]
-position = Vector2(385, 71)
-
 [node name="Slime3" parent="TileMapLayers/TheThing/Integrations" unique_id=440585589 instance=ExtResource("4_dxrkv")]
 position = Vector2(537, 162)
 
@@ -102,7 +99,7 @@ position = Vector2(755, 49)
 position = Vector2(1077, 42)
 
 [node name="Ghost" parent="TileMapLayers/TheThing/Integrations" unique_id=30656663 instance=ExtResource("5_dakft")]
-position = Vector2(64, 200)
+position = Vector2(68, 197)
 distance = -160.0
 
 [node name="Ghost2" parent="TileMapLayers/TheThing/Integrations" unique_id=1176483252 instance=ExtResource("5_dakft")]
@@ -112,11 +109,6 @@ distance = 48.0
 
 [node name="Ghost3" parent="TileMapLayers/TheThing/Integrations" unique_id=215735489 instance=ExtResource("5_dakft")]
 position = Vector2(688, 100)
-
-[node name="Ghost4" parent="TileMapLayers/TheThing/Integrations" unique_id=1361818478 instance=ExtResource("5_dakft")]
-position = Vector2(1305, 125)
-speed = 1.6
-distance = -96.0
 
 [node name="Ghost6" parent="TileMapLayers/TheThing/Integrations" unique_id=1947226934 instance=ExtResource("5_dakft")]
 position = Vector2(1359, 100)
@@ -131,17 +123,20 @@ distance = -128.0
 position = Vector2(728, 137)
 vertical = false
 distance = 240.0
+sleep_time = 0.25
 
 [node name="Ghost8" parent="TileMapLayers/TheThing/Integrations" unique_id=2026690543 instance=ExtResource("5_dakft")]
 position = Vector2(763, 186)
 vertical = false
 distance = 160.0
+sleep_time = 0.5
 
 [node name="Ghost9" parent="TileMapLayers/TheThing/Integrations" unique_id=1255707817 instance=ExtResource("5_dakft")]
 position = Vector2(729, 216)
 speed = 0.7
 vertical = false
 distance = 128.0
+sleep_time = 1.5
 
 [node name="Ghost10" parent="TileMapLayers/TheThing/Integrations" unique_id=2025982248 instance=ExtResource("5_dakft")]
 position = Vector2(1112, 217)
@@ -153,11 +148,13 @@ position = Vector2(984, 152)
 speed = 2.0
 vertical = false
 distance = 128.0
+sleep_time = 0.25
 
 [node name="Ghost12" parent="TileMapLayers/TheThing/Integrations" unique_id=830278515 instance=ExtResource("5_dakft")]
-position = Vector2(585, 263)
+position = Vector2(584, 199)
 speed = 1.25
-distance = -64.0
+distance = 64.0
+sleep_time = 2.0
 
 [node name="Ghost13" parent="TileMapLayers/TheThing/Integrations" unique_id=1315116383 instance=ExtResource("5_dakft")]
 position = Vector2(777, 256)
