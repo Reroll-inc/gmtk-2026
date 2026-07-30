@@ -1,8 +1,6 @@
 extends Node2D
 class_name GameManager
 
-@export var disposed_skills: Array[Mechanic.Type] = []
-
 @onready var _start: Marker2D = $Start
 @onready var _credits: Marker2D = $Credits
 @onready var _player: Player = $TileMapLayers/TheThing/Player
@@ -12,7 +10,6 @@ class_name GameManager
 
 func _init() -> void:
 	SignalBus.player_receive_dmg.connect(_handle_player_receive_dmg)
-	SignalBus.remove_mechanic.connect(_handle_skill_removal)
 	SignalBus.game_completed.connect(_handle_game_complete)
 	SignalBus.game_failed.connect(_handle_game_failed)
 	SignalBus.level_completed.connect(_handle_level_completed)
@@ -24,16 +21,9 @@ func _ready() -> void:
 	_stop()
 	_player.pause()
 
-	for type in disposed_skills:
-		_player.remove_mechanic(type)
-
 
 func _handle_player_receive_dmg() -> void:
 	_reset()
-
-
-func _handle_skill_removal(type: Mechanic.Type) -> void:
-	disposed_skills.push_back(type)
 
 
 func _reset() -> void:
@@ -75,8 +65,6 @@ func _on_finish_line_body_entered(_body: Node2D) -> void:
 
 
 func _handle_game_failed() -> void:
-	disposed_skills.clear()
-
 	call_deferred("_stop")
 
 

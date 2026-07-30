@@ -15,6 +15,7 @@ size = Vector2(13, 21)
 
 [node name="Game" type="Node2D" unique_id=797240526]
 script = ExtResource("1_4fuuu")
+disposed_skills = Array[int]([3])
 
 [node name="CreditsBg" type="Sprite2D" parent="." unique_id=1838469859]
 position = Vector2(235, 553)

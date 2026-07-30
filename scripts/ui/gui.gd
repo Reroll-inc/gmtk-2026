@@ -1,11 +1,10 @@
 extends CanvasLayer
 
-var main_menu: MainMenu = preload("res://ui/main_menu.tscn").instantiate()
-var control_menu: ControlMenu = preload("res://ui/controls.tscn").instantiate()
-var game_over: GameOver = preload("res://ui/game_over.tscn").instantiate()
-var level_complete: LevelComplete = preload("res://ui/level_complete.tscn").instantiate()
-
 @onready var hud: Hud = $Hud
+@onready var game_over: GameOver = $GameOver
+@onready var main_menu: MainMenu = $MainMenu
+@onready var control_menu: ControlMenu = $Controls
+@onready var level_complete: LevelComplete = $LevelComplete
 
 
 func _init() -> void:
@@ -16,58 +15,53 @@ func _init() -> void:
 	SignalBus.to_main_menu.connect(_handle_game_to_main_menu)
 	SignalBus.game_completed.connect(_handle_credits)
 
-	main_menu.to_controls.connect(_handle_to_controls)
-	control_menu.back.connect(_handle_controls_to_main_menu)
-	game_over.to_menu.connect(_handle_game_over_to_main_menu)
-
 
 func _ready() -> void:
-	add_child(main_menu)
+	main_menu.to_controls.connect(_handle_to_controls)
+	game_over.to_menu.connect(_handle_game_over_to_main_menu)
+	control_menu.back.connect(_handle_controls_to_main_menu)
+
+	main_menu.show()
 
 
 func _handle_game_start() -> void:
 	hud.show()
-
-	if main_menu.get_parent() != null:
-		remove_child(main_menu)
-	if game_over.get_parent() != null:
-		remove_child(game_over)
+	game_over.hide()
+	main_menu.hide()
 
 
 func _handle_game_to_main_menu() -> void:
-	add_child(main_menu)
+	main_menu.show()
 
 
 func _handle_to_controls() -> void:
-	remove_child(main_menu)
-	add_child(control_menu)
+	main_menu.hide()
+	control_menu.show()
 
 
 func _handle_controls_to_main_menu() -> void:
-	remove_child(control_menu)
-	add_child(main_menu)
+	control_menu.hide()
+	main_menu.show()
 
 
 func _handle_on_fail() -> void:
-	add_child(game_over)
+	game_over.show()
 
 
 func _handle_game_over_to_main_menu() -> void:
-	remove_child(game_over)
-	add_child(main_menu)
+	game_over.hide()
+	main_menu.show()
 
 
 func _handle_level_completed() -> void:
-	add_child(level_complete)
-
+	level_complete.show()
 	level_complete.shuffle()
 
 
 func _handle_to_next_level() -> void:
-	remove_child(level_complete)
+	level_complete.hide()
 
 
 func _handle_credits() -> void:
 	hud.hide()
-
-	remove_child(level_complete)
+	level_complete.hide()

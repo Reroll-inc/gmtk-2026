@@ -3,16 +3,12 @@ class_name GameOver
 
 signal to_menu()
 
-@onready var _mechanic_list: Array[Node] = $VBoxContainer2/MechanicList.get_children()
+@onready var _mechanic_list: Array[Node] = $Container/Items.get_children()
 
 
 func _init() -> void:
 	SignalBus.remove_mechanic.connect(_handle_remove_mechanic)
 	SignalBus.game_start.connect(_clean_up)
-
-
-func _ready() -> void:
-	_clean_up()
 
 
 func _handle_remove_mechanic(type: Mechanic.Type) -> void:

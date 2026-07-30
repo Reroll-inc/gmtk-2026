@@ -2,8 +2,25 @@
 
 [ext_resource type="Script" uid="uid://3qthctx8s7l6" path="res://scripts/ui/gui.gd" id="1_3f2kh"]
 [ext_resource type="PackedScene" uid="uid://ba7c4cu2p6jsp" path="res://ui/hud.tscn" id="2_xlv5r"]
+[ext_resource type="PackedScene" uid="uid://ch3ugwgnt5l63" path="res://ui/game_over.tscn" id="3_xcsiv"]
+[ext_resource type="PackedScene" uid="uid://bsb27ubprribx" path="res://ui/main_menu.tscn" id="4_mcydh"]
+[ext_resource type="PackedScene" uid="uid://kvnlcsst7qh4" path="res://ui/controls.tscn" id="5_fr2ss"]
+[ext_resource type="PackedScene" uid="uid://coyqxvgw737rb" path="res://ui/level_complete.tscn" id="6_juqqw"]
 
 [node name="GUI" type="CanvasLayer" unique_id=198715739]
 script = ExtResource("1_3f2kh")
 
 [node name="Hud" parent="." unique_id=356118809 instance=ExtResource("2_xlv5r")]
+visible = false
+
+[node name="GameOver" parent="." unique_id=507274711 instance=ExtResource("3_xcsiv")]
+visible = false
+
+[node name="MainMenu" parent="." unique_id=873225988 instance=ExtResource("4_mcydh")]
+visible = false
+
+[node name="Controls" parent="." unique_id=1368860397 instance=ExtResource("5_fr2ss")]
+visible = false
+
+[node name="LevelComplete" parent="." unique_id=1904580328 instance=ExtResource("6_juqqw")]
+visible = false
