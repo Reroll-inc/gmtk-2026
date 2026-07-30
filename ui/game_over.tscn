@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ch3ugwgnt5l63"]
 
-[ext_resource type="Script" uid="uid://b4sicfe1gs56b" path="res://scripts/ui/game_over.gd" id="1_5eixk"]
+[ext_resource type="Script" uid="uid://b4sicfe1gs56b" path="res://ui/game_over.gd" id="1_5eixk"]
 [ext_resource type="PackedScene" uid="uid://duw1edtt4lgev" path="res://ui/mechanic_preview.tscn" id="1_oo8kp"]
 [ext_resource type="Texture2D" uid="uid://djttsqriu1na1" path="res://ui/assets/background_cards.png" id="2_xjda6"]
 [ext_resource type="Texture2D" uid="uid://chvxaahp5p7wt" path="res://ui/assets/button_primary.png" id="4_akjlf"]

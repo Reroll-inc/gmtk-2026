@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dsg38b2sivjds"]
 
-[ext_resource type="Script" uid="uid://b307lq6khu7v2" path="res://scripts/enemies/slime.gd" id="1_0fifv"]
+[ext_resource type="Script" uid="uid://b307lq6khu7v2" path="res://game/enemies/slime.gd" id="1_0fifv"]
 [ext_resource type="SpriteFrames" uid="uid://dql86gah014b3" path="res://sprites/tiles/enemy_frames.tres" id="1_s4oog"]
 [ext_resource type="AudioStream" uid="uid://b56mqnp87dyam" path="res://assets/sfx/dumping.mp3" id="3_pxs54"]
 

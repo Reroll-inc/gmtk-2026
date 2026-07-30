@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://coyqxvgw737rb"]
 
-[ext_resource type="Script" uid="uid://dive47lrmhecu" path="res://scripts/ui/level_complete.gd" id="1_jq5il"]
+[ext_resource type="Script" uid="uid://dive47lrmhecu" path="res://ui/level_complete.gd" id="1_jq5il"]
 [ext_resource type="PackedScene" uid="uid://d1covadvr8oy" path="res://ui/mechanic_card.tscn" id="1_uwrpb"]
 [ext_resource type="Texture2D" uid="uid://dvrxtxochqflp" path="res://ui/assets/background-mainmenu.png" id="2_7e27b"]
-[ext_resource type="Script" uid="uid://co1gvbywb1oso" path="res://scripts/ui/score_card.gd" id="3_f8e0v"]
+[ext_resource type="Script" uid="uid://co1gvbywb1oso" path="res://ui/score_card.gd" id="3_f8e0v"]
 [ext_resource type="Texture2D" uid="uid://b2a85n0jpxxft" path="res://ui/assets/card_icon_climb.png" id="4_7e27b"]
 [ext_resource type="Texture2D" uid="uid://dhxo3dfh5g6hi" path="res://ui/assets/dash_icon.png" id="5_7e27b"]
 [ext_resource type="Texture2D" uid="uid://d1cbrjtgcpyr" path="res://ui/assets/card_icon_doble jump.png" id="6_l6tg0"]

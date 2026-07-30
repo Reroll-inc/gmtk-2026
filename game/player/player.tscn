@@ -1,71 +1,71 @@
 [gd_scene format=3 uid="uid://d27erohljh1tt"]
 
-[ext_resource type="Script" uid="uid://dvaxcquvh2phj" path="res://scripts/player.gd" id="1_w5y0b"]
-[ext_resource type="Script" uid="uid://cv1iuyj768s11" path="res://scripts/mechanics/movement.gd" id="3_p0vpi"]
-[ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://scripts/mechanics/dash.gd" id="4_d631c"]
-[ext_resource type="AudioStream" uid="uid://bior8efwhhdoc" path="res://assets/sfx/step.ogg" id="4_iyaem"]
-[ext_resource type="Script" uid="uid://cn02dbf02q4gf" path="res://scripts/mechanics/double_jump.gd" id="5_d631c"]
-[ext_resource type="Script" uid="uid://7fybflhvwvv8" path="res://scripts/mechanics/climb.gd" id="6_4fto2"]
-[ext_resource type="Script" uid="uid://b06enft8ehqro" path="res://scripts/mechanics/fly.gd" id="7_wkljg"]
-[ext_resource type="Texture2D" uid="uid://ccykbax576m70" path="res://sprites/char-sprite.png" id="9_7fxs2"]
+[ext_resource type="Script" uid="uid://dvaxcquvh2phj" path="res://game/player/player.gd" id="1_epvkq"]
+[ext_resource type="Script" uid="uid://cv1iuyj768s11" path="res://game/player/mechanics/movement.gd" id="2_5ghna"]
+[ext_resource type="AudioStream" uid="uid://bior8efwhhdoc" path="res://assets/sfx/step.ogg" id="3_j0mij"]
+[ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://game/player/mechanics/dash.gd" id="4_gb4gm"]
+[ext_resource type="Script" uid="uid://cn02dbf02q4gf" path="res://game/player/mechanics/double_jump.gd" id="5_uv2nh"]
+[ext_resource type="Script" uid="uid://7fybflhvwvv8" path="res://game/player/mechanics/climb.gd" id="6_n270p"]
+[ext_resource type="Script" uid="uid://b06enft8ehqro" path="res://game/player/mechanics/fly.gd" id="7_3ep63"]
+[ext_resource type="Texture2D" uid="uid://ccykbax576m70" path="res://sprites/char-sprite.png" id="8_rqcxa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vpi"]
 size = Vector2(14, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ry671"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(0, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sghav"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(16, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fxs2"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(0, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3s55"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(32, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4uvqg"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(0, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkjxy"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(16, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k1gg"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ppdnp"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_opbur"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(0, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fw65x"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(16, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vc3l"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qdgg6"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kp1l"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hobtg"]
-atlas = ExtResource("9_7fxs2")
+atlas = ExtResource("8_rqcxa")
 region = Rect2(64, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sghav"]
@@ -145,7 +145,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=1622942523]
 collision_mask = 4
-script = ExtResource("1_w5y0b")
+script = ExtResource("1_epvkq")
 friction = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2145180200]
@@ -165,23 +165,23 @@ shape = SubResource("RectangleShape2D_p0vpi")
 [node name="Mechanics" type="Node" parent="." unique_id=1410392055]
 
 [node name="Base" type="Node" parent="Mechanics" unique_id=1872219932]
-script = ExtResource("3_p0vpi")
-footstep_sound = ExtResource("4_iyaem")
+script = ExtResource("2_5ghna")
+footstep_sound = ExtResource("3_j0mij")
 
 [node name="Dash" type="Node" parent="Mechanics" unique_id=462262863]
-script = ExtResource("4_d631c")
+script = ExtResource("4_gb4gm")
 dash_speed = 400.0
 
 [node name="Timer" type="Timer" parent="Mechanics/Dash" unique_id=1581368041]
 
 [node name="DoubleJump" type="Node" parent="Mechanics" unique_id=550009658]
-script = ExtResource("5_d631c")
+script = ExtResource("5_uv2nh")
 
 [node name="Climb" type="Node" parent="Mechanics" unique_id=980693463]
-script = ExtResource("6_4fto2")
+script = ExtResource("6_n270p")
 
 [node name="Fly" type="Node" parent="Mechanics" unique_id=1148148570]
-script = ExtResource("7_wkljg")
+script = ExtResource("7_3ep63")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1566050294]
 current = true

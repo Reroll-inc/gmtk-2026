@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://diipvyyhr11d0"]
 
-[ext_resource type="Script" uid="uid://xmmymesfjbgb" path="res://scripts/enemies/ghost.gd" id="1_pr1ko"]
+[ext_resource type="Script" uid="uid://xmmymesfjbgb" path="res://game/enemies/ghost.gd" id="1_pr1ko"]
 [ext_resource type="SpriteFrames" uid="uid://dql86gah014b3" path="res://sprites/tiles/enemy_frames.tres" id="2_0erqf"]
 [ext_resource type="AnimationLibrary" uid="uid://djpmypnjdadr7" path="res://game/enemies/ghost_animations.res" id="3_0erqf"]
 [ext_resource type="AudioStream" uid="uid://dpuy4mr2vllkn" path="res://assets/sfx/ghost_loop.ogg" id="3_d07k3"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1covadvr8oy"]
 
-[ext_resource type="Script" uid="uid://cjex642vq0n3c" path="res://scripts/ui/mechanic_card.gd" id="1_b3ime"]
+[ext_resource type="Script" uid="uid://cjex642vq0n3c" path="res://ui/mechanic_card.gd" id="1_b3ime"]
 [ext_resource type="Texture2D" uid="uid://bmpxp2fssfil3" path="res://ui/assets/card_img.png" id="2_rgq6j"]
 
 [sub_resource type="Theme" id="Theme_thgns"]

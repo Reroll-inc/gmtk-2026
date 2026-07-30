@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://duw1edtt4lgev"]
 
 [ext_resource type="Texture2D" uid="uid://ccls4dxnw01nj" path="res://ui/assets/icons_16x16/icon_r09_c4.png" id="1_bn2pc"]
-[ext_resource type="Script" uid="uid://778gxi6vqkck" path="res://scripts/ui/mechanic_preview.gd" id="1_j0wy8"]
+[ext_resource type="Script" uid="uid://778gxi6vqkck" path="res://ui/mechanic_preview.gd" id="1_j0wy8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62fq3"]
 bg_color = Color(0.4117647, 0.25882354, 0.19215687, 1)
