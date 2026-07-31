@@ -1,12 +1,6 @@
 [gd_scene format=3 uid="uid://d27erohljh1tt"]
 
 [ext_resource type="Script" uid="uid://dvaxcquvh2phj" path="res://game/player/player.gd" id="1_epvkq"]
-[ext_resource type="Script" uid="uid://cv1iuyj768s11" path="res://game/player/mechanics/movement.gd" id="2_5ghna"]
-[ext_resource type="AudioStream" uid="uid://bior8efwhhdoc" path="res://assets/sfx/step.ogg" id="3_j0mij"]
-[ext_resource type="Script" uid="uid://b0lpeanxxdwmf" path="res://game/player/mechanics/dash.gd" id="4_gb4gm"]
-[ext_resource type="Script" uid="uid://cn02dbf02q4gf" path="res://game/player/mechanics/double_jump.gd" id="5_uv2nh"]
-[ext_resource type="Script" uid="uid://7fybflhvwvv8" path="res://game/player/mechanics/climb.gd" id="6_n270p"]
-[ext_resource type="Script" uid="uid://b06enft8ehqro" path="res://game/player/mechanics/fly.gd" id="7_3ep63"]
 [ext_resource type="Texture2D" uid="uid://ccykbax576m70" path="res://sprites/char-sprite.png" id="8_rqcxa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vpi"]
@@ -140,7 +134,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1622942523]
@@ -162,27 +156,6 @@ editor_draw_limits = true
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_p0vpi")
 
-[node name="Mechanics" type="Node" parent="." unique_id=1410392055]
-
-[node name="Base" type="Node" parent="Mechanics" unique_id=1872219932]
-script = ExtResource("2_5ghna")
-footstep_sound = ExtResource("3_j0mij")
-
-[node name="Dash" type="Node" parent="Mechanics" unique_id=462262863]
-script = ExtResource("4_gb4gm")
-dash_speed = 400.0
-
-[node name="Timer" type="Timer" parent="Mechanics/Dash" unique_id=1581368041]
-
-[node name="DoubleJump" type="Node" parent="Mechanics" unique_id=550009658]
-script = ExtResource("5_uv2nh")
-
-[node name="Climb" type="Node" parent="Mechanics" unique_id=980693463]
-script = ExtResource("6_n270p")
-
-[node name="Fly" type="Node" parent="Mechanics" unique_id=1148148570]
-script = ExtResource("7_3ep63")
-
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1566050294]
 current = true
 
@@ -190,5 +163,3 @@ current = true
 sprite_frames = SubResource("SpriteFrames_sghav")
 animation = &"run"
 frame_progress = 0.9860298
-
-[connection signal="timeout" from="Mechanics/Dash/Timer" to="Mechanics/Dash" method="_on_timer_timeout"]

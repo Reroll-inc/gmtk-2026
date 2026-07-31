@@ -1,4 +1,3 @@
-extends Node
 class_name Mechanic
 
 enum Type {
@@ -7,23 +6,33 @@ enum Type {
 	DOUBLE_JUMP = 2,
 	FLY = 3,
 	KILL = 4,
+	MOVEMENT = 5,
 }
 
 const NODE_NAME: Array[String] = ["Climb", "Dash", "DoubleJump", "Fly", "Kill"]
 
-var player: Player
+var _player: Player
+var _active: bool = true
 
 
 # because we want to reach info or nodes from the player
-func setup(p: Player) -> void:
-	player = p
+func _init(p: Player) -> void:
+	_player = p
+
+
+func disable() -> void:
+	_active = false
+
+
+func enable() -> void:
+	_active = true
 
 
 # can we switch to this mechanic?
 # exmaple: you can only Climb if you are touching a wall and pressing X
 # or you can only Dash if you are pressing Z (and some cooldown timer?)
 func can_activate() -> bool:
-	return true
+	return _active
 
 
 func on_enter() -> void:

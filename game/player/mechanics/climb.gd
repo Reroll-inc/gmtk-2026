@@ -1,16 +1,12 @@
 extends Mechanic
 class_name Climb
 
-@export var climb_speed: float = 200.0
-@export var step_interval: float = 0.25
 var _step_timer: float = 0.0
-@export var climb_sound: AudioStream = preload("res://assets/sfx/poka02.mp3")
+var _climb_sound: AudioStream = preload("res://assets/sfx/poka02.mp3")
 
 
 func can_activate() -> bool:
-	if player.is_on_wall() and Input.is_action_pressed("climb"):
-		return true
-	return false
+	return _active && _player.is_on_wall() and Input.is_action_pressed("climb")
 
 
 # i want to allow the player to dash out of a climb, but not allow base movement to interrupt it...
@@ -23,30 +19,33 @@ func is_interruptible_by(_m: Mechanic) -> bool:
 
 
 func on_physics_process(_delta: float) -> bool:
-	if not Input.is_action_pressed("climb") or not player.is_on_wall():
+	if not Input.is_action_pressed("climb") or not _player.is_on_wall():
 		return false
 
-	var dir: Vector2 = player.read_input_direction()
+	var dir: Vector2 = _player.read_input_direction()
 	# +1 = wall on the right, -1 = on the left
-	var wall_dir: float = -player.get_wall_normal().x
+	var wall_dir: float = -_player.get_wall_normal().x
 	var facing = Vector2(wall_dir, 0.0)
 
 	if dir.y != 0.0:
 		_play_climb(_delta)
-		player.set_anim("climb_move", facing)
+		_player.set_anim("climb_move", facing)
 	else:
-		player.set_anim("climb_idle", facing)
+		_player.set_anim("climb_idle", facing)
 
-	player.velocity.y = dir.y * climb_speed
+	_player.velocity.y = dir.y * _player.PROPERTIES.climb_speed
 
 	return true
 
 
 func _play_climb(delta: float) -> void:
 	_step_timer -= delta
-	if _step_timer > 0.0 or absf(player.velocity.y) < 10.0:
+
+	if _step_timer > 0.0 or absf(_player.velocity.y) < 10.0:
 		return
-	_step_timer = step_interval
-	player.audio_player.stream = climb_sound
-	player.audio_player.pitch_scale = randf_range(0.7, 0.8)
-	player.audio_player.play()
+
+	_step_timer = _player.PROPERTIES.climb_step_interval
+
+	_player.audio_player.stream = _climb_sound
+	_player.audio_player.pitch_scale = randf_range(0.7, 0.8)
+	_player.audio_player.play()

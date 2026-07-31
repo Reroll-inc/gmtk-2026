@@ -6,6 +6,8 @@ enum Position {
 	CREDITS,
 }
 
+const PROPERTIES: PlayerData = preload("res://game/player/player_data.tres")
+
 @export var jump_height: float = -450.0
 @export var gravity: float = 20.5
 @export var jump_hold: float = 0.5
@@ -23,25 +25,23 @@ enum Position {
 @export var fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
 @export var kill_enemy_sound: AudioStream = preload("res://assets/sfx/poyo.mp3")
 
-@onready var mechanics: Node = $Mechanics
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_listener: AudioListener2D = $AudioListener2D
 @onready var camera: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _camera_limit: Vector2i = Vector2i(camera.limit_right, camera.limit_bottom)
 
-var _mechanics: Array[Mechanic] = []
-var _active: Mechanic = null
-
 var last_facing: Vector2 = Vector2.RIGHT
-var _kill_enabled: bool = true
 
+var _mechanics: Dictionary[Mechanic.Type, Mechanic] = { }
+var _active: Mechanic = null
+var _initial_skills: Array = Mechanic.Type.values()
+var _kill_enabled: bool = true
 var _credits_limit: Dictionary[String, Vector2i] = {
 	top = Vector2i(0, 31 * 16),
 	bottom = Vector2i(30 * 16, 48 * 16),
 }
-
-var hp: int = max_hp
+var _hp: int = max_hp
 
 
 func _ready() -> void:
@@ -54,12 +54,18 @@ func _ready() -> void:
 	SignalBus.game_start.connect(_handle_start)
 	SignalBus.to_next_level.connect(_handle_next_level)
 
-	for child: Node in mechanics.get_children():
-		if child is Mechanic:
-			var m: Mechanic = child
-
-			m.setup(self)
-			_mechanics.append(m)
+	for type: Mechanic.Type in _initial_skills:
+		match type:
+			Mechanic.Type.CLIMB:
+				_mechanics.set(type, Climb.new(self))
+			Mechanic.Type.DASH:
+				_mechanics.set(type, Dash.new(self))
+			Mechanic.Type.DOUBLE_JUMP:
+				_mechanics.set(type, DoubleJump.new(self))
+			Mechanic.Type.FLY:
+				_mechanics.set(type, Fly.new(self))
+			Mechanic.Type.MOVEMENT:
+				_mechanics.set(type, BaseMovement.new(self))
 
 	_switch_mechanic(_fallback())
 
@@ -71,7 +77,7 @@ func set_anim(anim_name: String, facing: Vector2 = Vector2.ZERO) -> void:
 
 
 func _fallback() -> Mechanic:
-	for m: Mechanic in mechanics.get_children():
+	for m: Mechanic in _mechanics.values():
 		if m.can_activate():
 			return m
 	return null
@@ -100,7 +106,7 @@ func _physics_process(delta: float) -> void:
 	# no mechanic is active, try to switch to one that can be activated
 	# or... maybe the current mechanic allows a break?
 	if _active == null or _active.is_interruptible():
-		for m: Mechanic in mechanics.get_children():
+		for m: Mechanic in _mechanics.values():
 			if m == _active:
 				continue
 			if m.can_activate() and (_active == null or _active.is_interruptible_by(m)):
@@ -117,9 +123,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _handle_dmg() -> void:
-	hp -= 1
+	_hp -= 1
 
-	if hp == 0:
+	if _hp == 0:
 		_play_fail_sound()
 		SignalBus.game_failed.emit()
 	else:
@@ -152,19 +158,18 @@ func unpause() -> void:
 
 
 func _handle_start() -> void:
-	hp = max_hp
+	_hp = max_hp
 
-	call_deferred("_reset_mechanics")
+	_reset_mechanics()
 
 
 func _handle_next_level() -> void:
-	hp = max_hp
+	_hp = max_hp
 
 
 func _reset_mechanics() -> void:
-	for m in _mechanics:
-		if m.get_parent() == null:
-			mechanics.add_child(m)
+	for m: Mechanic in _mechanics.values():
+		m.enable()
 
 
 func remove_mechanic(type: Mechanic.Type) -> void:
@@ -175,7 +180,7 @@ func remove_mechanic(type: Mechanic.Type) -> void:
 		return
 
 	var mechanic_name: String = Mechanic.NODE_NAME[type]
-	var m: Mechanic = mechanics.get_node_or_null(mechanic_name)
+	var m: Mechanic = _mechanics.get(type)
 
 	if m == null:
 		print("Mechanic not found: " + mechanic_name)
@@ -186,7 +191,7 @@ func remove_mechanic(type: Mechanic.Type) -> void:
 	if m == _active:
 		_switch_mechanic(_fallback())
 
-	mechanics.remove_child(m)
+	m.disable()
 
 
 func read_input_direction() -> Vector2:
