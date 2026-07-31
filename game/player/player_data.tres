@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_krxoq")
-metadata/_custom_type_script = "uid://cn2jdwhk0xoc2"
+dash_cooldown = 2.0
+jump_height = -350.0
+gravity = 18.0
+movement_max_speed = 140.0

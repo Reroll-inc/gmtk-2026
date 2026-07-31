@@ -15,14 +15,22 @@ func on_physics_process(delta: float) -> bool:
 	var hor: float = Input.get_action_strength("move_right") - Input.get_action_strength(
 		"move_left"
 	)
-	var acc: float = (_player.acceleration if _player.is_on_floor() else _player.air_acceleration)
-	var velocity_weight: float = delta * (acc if hor else _player.friction)
+	var acc: float = (
+		_player.PROPERTIES.movement_acceleration if _player.is_on_floor() else _player
+		.PROPERTIES
+		.air_acceleration
+	)
+	var velocity_weight: float = delta * (acc if hor else _player.PROPERTIES.movement_friction)
 
-	_player.velocity.x = lerp(_player.velocity.x, hor * _player.max_speed, velocity_weight)
+	_player.velocity.x = lerp(
+		_player.velocity.x,
+		hor * _player.PROPERTIES.movement_max_speed,
+		velocity_weight,
+	)
 
 	if _player.is_on_floor():
 		if Input.is_action_just_pressed("move_forward"):
-			_player.velocity.y = _player.jump_height
+			_player.velocity.y = _player.PROPERTIES.jump_height
 			_play_jump()
 			_player.set_anim("jump_start")
 		else:
@@ -31,11 +39,11 @@ func on_physics_process(delta: float) -> bool:
 	elif _player.velocity.y < 0.0:
 		_player.set_anim("fall")
 		if Input.is_action_just_released("move_forward"):
-			_player.velocity.y *= _player.jump_hold
+			_player.velocity.y *= _player.PROPERTIES.jump_hold
 		elif Input.is_action_pressed("move_back"):
-			_player.velocity.y += _player.fast_fall_gravity * delta
+			_player.velocity.y += _player.PROPERTIES.fast_fall_gravity * delta
 
-	_player.velocity.y += _player.gravity
+	_player.velocity.y += _player.PROPERTIES.gravity
 
 	return true
 

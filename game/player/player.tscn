@@ -140,7 +140,6 @@ animations = [{
 [node name="Player" type="CharacterBody2D" unique_id=1622942523]
 collision_mask = 4
 script = ExtResource("1_epvkq")
-friction = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2145180200]
 limit_left = 0

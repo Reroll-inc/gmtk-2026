@@ -8,22 +8,9 @@ enum Position {
 
 const PROPERTIES: PlayerData = preload("res://game/player/player_data.tres")
 
-@export var jump_height: float = -450.0
-@export var gravity: float = 20.5
-@export var jump_hold: float = 0.5
-@export var fast_fall_gravity: float = 600.0
-
-@export var max_speed: float = 400.0
-@export var acceleration: float = 52.5
-@export var friction: float = 12.5
-
-@export var air_acceleration: float = 10.0
-@export var bounce_up_on_kill: float = -300.0
-@export var max_hp: int = 3
-
-@export var dmg_sound: AudioStream = preload("res://assets/sfx/powerdown07.mp3")
-@export var fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
-@export var kill_enemy_sound: AudioStream = preload("res://assets/sfx/poyo.mp3")
+var _dmg_sound: AudioStream = preload("res://assets/sfx/powerdown07.mp3")
+var _fail_sound: AudioStream = preload("res://assets/sfx/division_of_ninja.mp3")
+var _kill_enemy_sound: AudioStream = preload("res://assets/sfx/poyo.mp3")
 
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_listener: AudioListener2D = $AudioListener2D
@@ -41,7 +28,7 @@ var _credits_limit: Dictionary[String, Vector2i] = {
 	top = Vector2i(0, 31 * 16),
 	bottom = Vector2i(30 * 16, 48 * 16),
 }
-var _hp: int = max_hp
+var _hp: int = PROPERTIES.max_hp
 
 
 func _ready() -> void:
@@ -136,7 +123,7 @@ func _handle_dmg() -> void:
 func _play_dmg_sound() -> void:
 	if audio_player.playing:
 		audio_player.stop()
-	audio_player.stream = dmg_sound
+	audio_player.stream = _dmg_sound
 	audio_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_player.play()
 
@@ -144,7 +131,7 @@ func _play_dmg_sound() -> void:
 func _play_fail_sound() -> void:
 	if audio_player.playing:
 		audio_player.stop()
-	audio_player.stream = fail_sound
+	audio_player.stream = _fail_sound
 	audio_player.pitch_scale = 1.0
 	audio_player.play()
 
@@ -158,13 +145,13 @@ func unpause() -> void:
 
 
 func _handle_start() -> void:
-	_hp = max_hp
+	_hp = PROPERTIES.max_hp
 
 	_reset_mechanics()
 
 
 func _handle_next_level() -> void:
-	_hp = max_hp
+	_hp = PROPERTIES.max_hp
 
 
 func _reset_mechanics() -> void:
@@ -210,7 +197,7 @@ func on_enemy_hit(enemy: Node2D, type: Enemy.Type) -> void:
 		return
 
 	if _kill_enabled and is_falling():
-		velocity.y = bounce_up_on_kill
+		velocity.y = PROPERTIES.bounce_up_on_kill
 
 		SignalBus.enemy_killed.emit(type)
 
@@ -224,7 +211,7 @@ func on_enemy_hit(enemy: Node2D, type: Enemy.Type) -> void:
 func _play_kill_sound() -> void:
 	if audio_player.playing:
 		audio_player.stop()
-	audio_player.stream = kill_enemy_sound
+	audio_player.stream = _kill_enemy_sound
 	audio_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_player.play()
 
