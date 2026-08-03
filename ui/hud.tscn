@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bi5rrrb35byn" path="res://ui/assets/icon_life_full.png" id="2_1v5rv"]
 [ext_resource type="Texture2D" uid="uid://be4qbabinbtbj" path="res://sprites/hp_1.tres" id="2_7ihmi"]
 [ext_resource type="Texture2D" uid="uid://dm34q4jdeamkn" path="res://sprites/hp_0.tres" id="4_en2x2"]
-[ext_resource type="Texture2D" uid="uid://dbat3jkpcddgo" path="res://ui/assets/back_icon.png" id="7_ff8ar"]
-[ext_resource type="Texture2D" uid="uid://dym6xltypwsqh" path="res://ui/assets/icons_16x16/icon_r06_c5.png" id="7_so1yu"]
-[ext_resource type="Texture2D" uid="uid://bdc6vs0auc1b0" path="res://ui/assets/icons_16x16/icon_r08_c4.png" id="8_m0eg6"]
+[ext_resource type="Texture2D" uid="uid://btvbyrq20dhxo" path="res://ui/assets/icons_16x16/icon_r08_c2.png" id="6_ff8ar"]
+[ext_resource type="Texture2D" uid="uid://dhxo3dfh5g6hi" path="res://ui/assets/dash_icon.png" id="7_m0eg6"]
+[ext_resource type="Texture2D" uid="uid://d1cbrjtgcpyr" path="res://ui/assets/card_icon_doble jump.png" id="8_b00kl"]
+[ext_resource type="Texture2D" uid="uid://0lrd51nmhunr" path="res://ui/assets/card_icon_fly.png" id="9_so1yu"]
 [ext_resource type="PackedScene" uid="uid://cmv2chba54lhs" path="res://ui/hud_icon.tscn" id="12_b00kl"]
-[ext_resource type="Texture2D" uid="uid://c6e0okmvc5ein" path="res://ui/assets/icons_16x16/icon_r07_c6.png" id="12_so1yu"]
 [ext_resource type="Texture2D" uid="uid://b7v7n5gdtulav" path="res://ui/assets/icons_16x16/icon_r09_c1.png" id="13_so1yu"]
 
 [node name="Hud" type="Control" unique_id=1675618163]
@@ -59,22 +59,22 @@ alignment = 1
 
 [node name="Climb" parent="LevelProgress" unique_id=883308966 instance=ExtResource("12_b00kl")]
 layout_mode = 2
-image = ExtResource("7_so1yu")
+image = ExtResource("6_ff8ar")
 
 [node name="Dash" parent="LevelProgress" unique_id=417960945 instance=ExtResource("12_b00kl")]
 layout_mode = 2
 type = 1
-image = ExtResource("7_ff8ar")
+image = ExtResource("7_m0eg6")
 
 [node name="DoubleJump" parent="LevelProgress" unique_id=1590585068 instance=ExtResource("12_b00kl")]
 layout_mode = 2
 type = 2
-image = ExtResource("8_m0eg6")
+image = ExtResource("8_b00kl")
 
 [node name="Fly" parent="LevelProgress" unique_id=1720664091 instance=ExtResource("12_b00kl")]
 layout_mode = 2
 type = 3
-image = ExtResource("12_so1yu")
+image = ExtResource("9_so1yu")
 
 [node name="Kill" parent="LevelProgress" unique_id=1065105 instance=ExtResource("12_b00kl")]
 layout_mode = 2
